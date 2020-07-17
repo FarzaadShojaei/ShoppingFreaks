@@ -11,6 +11,7 @@ public class Repository implements AutoCloseable{
     private PreparedStatement preparedStatement1;
     private PreparedStatement preparedStatement2;
     private PreparedStatement preparedStatement3;
+    private PreparedStatement preparedStatement4;
     public Repository()throws Exception{
         Class.forName("oracle.jdbc.driver.OracleDriver");
         connection=DriverManager.getConnection("oracle:jdbc:thin:@localhost:1521:xe","Digikala","myjava123");
@@ -91,7 +92,7 @@ preparedStatement.executeUpdate();
         preparedStatement1.executeUpdate();
         //prices of books
         preparedStatement1.setString(3,"523000");
-        preparedStatement1.setString(3,"60075");
+        preparedStatement1.setString(3,"60075,400");
         preparedStatement1.setString(3,"243200");
         preparedStatement1.executeUpdate();
         //prices of things
@@ -100,7 +101,7 @@ preparedStatement.executeUpdate();
         preparedStatement1.setString(3,"600000");
         preparedStatement1.executeUpdate();
         //prices of tools
-        preparedStatement1.setString(3,"50000");
+        preparedStatement1.setString(3,"5000");
         preparedStatement1.setString(3,"10000");
         preparedStatement1.setString(3,"700000");
         preparedStatement1.executeUpdate();
@@ -120,6 +121,9 @@ preparedStatement.executeUpdate();
 preparedStatement3=connection.prepareStatement("insert into Comments(id,idea) values (?,?)");
 preparedStatement3.setInt(1,entity.getId());
 preparedStatement3.setString(2,entity.getIdea());
+    }
+    public void insert4(Entity entity)throws Exception{
+        preparedStatement4=connection.prepareStatement("insert into")
     }
     public void commit()throws Exception{
         connection.commit();
