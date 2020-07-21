@@ -8,12 +8,14 @@ import java.util.List;
 public class Repository implements AutoCloseable{
     private Connection connection;
     private PreparedStatement preparedStatement;
+
     public Repository()throws Exception{
         Class.forName("oracle.jdbc.driver.OracleDriver");
-        connection=DriverManager.getConnection("oracle:jdbc:thin:@localhost:1521:xe","Digikala","myjava123");
+        connection=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","digikala","myjava123");
         connection.setAutoCommit(false);
     }
-    public List<Entity>select(Entity resultset)throws Exception{
+
+    public List<Entity>select()throws Exception{
         preparedStatement=connection.prepareStatement("select * from users");
         ResultSet resultSet=preparedStatement.executeQuery();
         List<Entity>entityList=new ArrayList<>();
@@ -25,9 +27,11 @@ public class Repository implements AutoCloseable{
             entity.setAddress(resultSet.getString("Address"));
             entityList.add(entity);
         }
+
         if(resultSet.next()){
             System.out.println("You May Enter");
         }
+
         else {
             System.out.println("you Cannot Enter");
             System.exit(0);
@@ -35,15 +39,17 @@ public class Repository implements AutoCloseable{
         return entityList;
 
     }
-    public void insert(Entity entity)throws Exception{
-preparedStatement=connection.prepareStatement("insert into users(Melicode,Name,PhoneNumber,Address)values (?,?,?,?)");//primary key=Melicode
-preparedStatement.setString(1,entity.getMeliCode());
-preparedStatement.setString(2,entity.getName());
-preparedStatement.setString(3,entity.getPhoneNumber());
-preparedStatement.setString(4,entity.getAddress());
-preparedStatement.executeUpdate();
+
+    public void insertUserInfo(Entity entity)throws Exception{
+        preparedStatement=connection.prepareStatement("insert into users(Melicode,Name,PhoneNumber,Address)values (?,?,?,?)");//primary key=Melicode
+        preparedStatement.setString(1,entity.getMeliCode());
+        preparedStatement.setString(2,entity.getName());
+        preparedStatement.setString(3,entity.getPhoneNumber());
+        preparedStatement.setString(4,entity.getAddress());
+        preparedStatement.executeUpdate();
     }
-    public void insert1()throws Exception{
+
+    public void insertProducts()throws Exception{
         preparedStatement=connection.prepareStatement("insert into products(Category,Name,Price)values(?,?,?)");
         preparedStatement.setString(1,"Clothes");
         preparedStatement.setString(1,"Food");
@@ -90,13 +96,17 @@ preparedStatement.executeUpdate();
         preparedStatement.setString(3,"50000");
         preparedStatement.setString(3,"10000");
         preparedStatement.setString(3,"700000");
+        preparedStatement.executeUpdate ();
     }
+
     public void commit()throws Exception{
         connection.commit();
     }
+
     public void rollback()throws Exception{
         connection.rollback();
     }
+
     @Override
     public void close()throws Exception{
         preparedStatement.close();

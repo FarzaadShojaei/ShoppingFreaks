@@ -2,6 +2,7 @@ package model.entity;
 
 public class Entity {
     private String Name,PhoneNumber,Address,MeliCode;//Baraye vared shodan user
+
     public String getName(){return Name;}
     public String getPhoneNumber(){return PhoneNumber;}
     public String getAddress(){return  Address;}
