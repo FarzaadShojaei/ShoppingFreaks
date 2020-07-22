@@ -8,7 +8,7 @@ public class Controller {
     public void editor(String name, String PhoneNumber, String Address, String MeliCode, UserEntity temp){
         try{
             Service.getInstance().save(new UserEntity().setName(temp.getName()).setPhoneNumber(temp.getPhoneNumber())
-            .setAddress(temp.getAddress()).setMeliCode(temp.getMeliCode()));
+                    .setAddress(temp.getAddress()).setMeliCode(temp.getMeliCode()));
         }catch (Exception e){
             System.out.println("Failed to save"+e.getMessage());
         }
