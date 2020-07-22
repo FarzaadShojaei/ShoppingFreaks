@@ -147,8 +147,41 @@ public void updateMatherial(Entity entity)throws Exception{
         preparedStatement=connection.prepareStatement("update numbers set name=? where amount=?");
 preparedStatement.setString(1,"TankTop");
 preparedStatement.setInt(2,entity.getNumber());
-
-
+preparedStatement.setString(1,"Jeans");
+preparedStatement.setInt(2,entity.getNumber());
+preparedStatement.setString(1,"Shorts");
+preparedStatement.setInt(2,entity.getNumber());
+//updateFood
+    preparedStatement.setString(1,"Pizza");
+    preparedStatement.setInt(2,entity.getNumber());
+    preparedStatement.setString(1,"HotDog");
+    preparedStatement.setInt(2,entity.getNumber());
+    preparedStatement.setString(1,"Turkish Kebab");
+    preparedStatement.setInt(1,entity.getNumber());
+    //UpdateBooks
+    preparedStatement.setString(1,"Little Prince");
+    preparedStatement.setInt(2,entity.getNumber());
+    preparedStatement.setString(1,"War And Peace");
+    preparedStatement.setInt(2,entity.getNumber());
+    preparedStatement.setString(1,"Metro 2034");
+    preparedStatement.setInt(2,entity.getNumber());
+    //UpdateKitchen
+    preparedStatement.setString(1,"Fork");
+    preparedStatement.setInt(2,entity.getNumber());
+    preparedStatement.setString(1,"Oven");
+preparedStatement.setInt(2,entity.getNumber());
+preparedStatement.setString(1,"Plate");
+preparedStatement.setInt(2,entity.getNumber());
+//UpdateTools
+    preparedStatement.setString(1,"Tape");
+    preparedStatement.setInt(2,entity.getNumber());
+    preparedStatement.setString(1,"Axe");
+    preparedStatement.setInt(2,entity.getNumber());
+    preparedStatement.setString(1,"Bat");
+    preparedStatement.setInt(2,entity.getNumber());
+    if(entity.getNumber()==0){
+        System.out.println("Out of Stock");
+    }
 }
 
     public void commit()throws Exception{
