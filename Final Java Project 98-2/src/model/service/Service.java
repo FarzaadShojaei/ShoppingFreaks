@@ -1,5 +1,7 @@
 package model.service;
 
+import model.entity.CommentEntity;
+import model.entity.PaymentEntity;
 import model.entity.ProductEntity;
 import model.entity.UserEntity;
 import model.repository.Repository;
@@ -15,6 +17,19 @@ public class Service {
             repository.insertUserInfo(userEntity);
             repository.commit();
         }
+    }
+    public void savePayment(PaymentEntity paymentEntity)throws Exception{
+        try(Repository repository=new Repository()){
+            repository.insertpayments(paymentEntity);
+            repository.commit();
+        }
+    }
+    public void savecomment(CommentEntity commentEntity)throws Exception{
+        try (Repository repository=new Repository()){
+            repository.insertComments(commentEntity);
+            repository.commit();
+        }
+
     }
 
     public void initialization (ProductEntity productEntity) throws Exception {
@@ -40,7 +55,31 @@ public class Service {
             repository.commit ();
         }
     }
-
+///////////////////////////////////////////////////////
+    public List<PaymentEntity>reportpayment()throws Exception{
+        List<PaymentEntity> paymentEntities;
+        try(Repository repository=new Repository()){
+            paymentEntities=repository.selectpayments();
+        }
+        return paymentEntities;
+    }
+    //////////////////////////////////////////////////////////
+    public List<ProductEntity>reportproduct()throws Exception{
+        List<ProductEntity> productEntities;
+        try(Repository repository=new Repository()){
+            productEntities=repository.selectproducts();
+        }
+        return productEntities;
+    }
+    //////////////////////////////////////////////////////////////
+    public List<CommentEntity>reportcomment()throws Exception{
+        List<CommentEntity>commentEntities;
+        try(Repository repository=new Repository()){
+            commentEntities=repository.selectcomments();
+        }
+        return commentEntities;
+    }
+    /////////////////////////////////////////////////////////////////
   public List<UserEntity>report()throws Exception{
       List<UserEntity> entities;
       try(Repository repository=new Repository()){

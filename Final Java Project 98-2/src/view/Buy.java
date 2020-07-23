@@ -11,9 +11,7 @@ import net.miginfocom.swing.*;
  * @author mohammad
  */
 public class Buy extends JFrame {
-    public Buy() {
-        initComponents();
-    }
+    public Buy() { initComponents(); }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
