@@ -17,7 +17,6 @@ public class Repository implements AutoCloseable {
     }
 
 
-
     public List<UserEntity> select() throws Exception {
         preparedStatement = connection.prepareStatement("select * from users");
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -40,17 +39,18 @@ public class Repository implements AutoCloseable {
         return userEntityList;
 
     }
+
     ////////////////////////////////////////////////////////////////////
-    public List<ProductEntity> selectproducts()throws Exception{
-        preparedStatement=connection.prepareStatement("select * from products");
-        ResultSet resultSet=preparedStatement.executeQuery();
-        List<ProductEntity> productEntityList=new ArrayList<>();
-        while(resultSet.next()){
-            ProductEntity productEntity=new ProductEntity();
+    public List<ProductEntity> selectproducts() throws Exception {
+        preparedStatement = connection.prepareStatement("select * from products");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        List<ProductEntity> productEntityList = new ArrayList<>();
+        while (resultSet.next()) {
+            ProductEntity productEntity = new ProductEntity();
             productEntity.setNumberOfTankTop(resultSet.getInt(2));
             productEntity.setNumberOfJeans(resultSet.getInt(2));
             productEntity.setNumberOfShirt(resultSet.getInt(2));
-                productEntity.setNumberOfPizza(resultSet.getInt(2));
+            productEntity.setNumberOfPizza(resultSet.getInt(2));
             productEntity.setNumberOfHotDog(resultSet.getInt(2));
             productEntity.setNumberOfTurkishKebab(resultSet.getInt(2));
             productEntity.setNumberOfLittlePrince(resultSet.getInt(2));
@@ -67,13 +67,14 @@ public class Repository implements AutoCloseable {
         }
         return productEntityList;
     }
-////////////////////////////////////////////////////////////////////////////////////
-    public List<EmployeeEntity> selectemployees()throws Exception{
-        preparedStatement=connection.prepareStatement("select * from Employees");
-        ResultSet resultSet=preparedStatement.executeQuery();
-        List<EmployeeEntity> employeeEntityList=new ArrayList<>();
-        while(resultSet.next()){
-            EmployeeEntity employeeEntity=new EmployeeEntity();
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    public List<EmployeeEntity> selectemployees() throws Exception {
+        preparedStatement = connection.prepareStatement("select * from Employees");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        List<EmployeeEntity> employeeEntityList = new ArrayList<>();
+        while (resultSet.next()) {
+            EmployeeEntity employeeEntity = new EmployeeEntity();
             employeeEntity.setName(resultSet.getString("Name"));
             employeeEntity.setFathername(resultSet.getString("Fathername"));
             employeeEntity.setAge(resultSet.getInt("Age"));
@@ -82,7 +83,8 @@ public class Repository implements AutoCloseable {
         }
         return employeeEntityList;
     }
-/////////////////////////////////////////////////////////////////////////////////
+
+    /////////////////////////////////////////////////////////////////////////////////
     public void insertUserInfo(UserEntity userEntity) throws Exception {
         preparedStatement = connection.prepareStatement("insert into users(Melicode,Name,PhoneNumber,Address)values (?,?,?,?)");//primary key=Melicode
         preparedStatement.setString(1, userEntity.getMeliCode());
@@ -91,13 +93,14 @@ public class Repository implements AutoCloseable {
         preparedStatement.setString(4, userEntity.getAddress());
         preparedStatement.executeUpdate();
     }
-/////////////////////////////////////////////////////////////////////////////////////
-    public List<PaymentEntity> selectpayments()throws Exception{
-        preparedStatement=connection.prepareStatement("select * from payments");
-        ResultSet resultSet=preparedStatement.executeQuery();
-        List<PaymentEntity> paymentEntityList=new ArrayList<>();
-        while(resultSet.next()){
-            PaymentEntity paymentEntity=new PaymentEntity();
+
+    /////////////////////////////////////////////////////////////////////////////////////
+    public List<PaymentEntity> selectpayments() throws Exception {
+        preparedStatement = connection.prepareStatement("select * from payments");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        List<PaymentEntity> paymentEntityList = new ArrayList<>();
+        while (resultSet.next()) {
+            PaymentEntity paymentEntity = new PaymentEntity();
             paymentEntity.setDate(resultSet.getString("Date"));
             paymentEntity.setHour(resultSet.getInt("Hour"));
             paymentEntity.setCardNumber(resultSet.getString("Phonenumber"));
@@ -106,6 +109,7 @@ public class Repository implements AutoCloseable {
         }
         return paymentEntityList;
     }
+
     ///////////////////////////////////////////////////////////////////////////////////////
     public void insertProducts(ProductEntity productEntity) throws Exception {
         preparedStatement = connection.prepareStatement("insert into products(Name , Price , numbers)values(?,?,?)");
@@ -173,100 +177,106 @@ public class Repository implements AutoCloseable {
 
         preparedStatement.executeUpdate();
     }
-/////////////////////////////////////////////////////////////////////////////////////////////
-    public void updateNumberOfProduct (ProductEntity productEntity) throws Exception{
-        preparedStatement=connection.prepareStatement ("UPDATE products SET numbers=? WHERE name=? ");
+
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    public void updateNumberOfProduct(ProductEntity productEntity) throws Exception {
+        preparedStatement = connection.prepareStatement("UPDATE products SET numbers=? WHERE name=? ");
 
         ////////////////////////////////////////////////////////////////////Update Clothes
-        preparedStatement.setInt (1,productEntity.getNumberOfTankTop());
-        preparedStatement.setString (2,"TankTop");
+        preparedStatement.setInt(1, productEntity.getNumberOfTankTop());
+        preparedStatement.setString(2, "TankTop");
 
-        preparedStatement.setInt (1,productEntity.getNumberOfJeans());
-        preparedStatement.setString (2,"Jeans");
+        preparedStatement.setInt(1, productEntity.getNumberOfJeans());
+        preparedStatement.setString(2, "Jeans");
 
-        preparedStatement.setInt (1,productEntity.getNumberOfShirt());
-        preparedStatement.setString (2,"Shirt");
+        preparedStatement.setInt(1, productEntity.getNumberOfShirt());
+        preparedStatement.setString(2, "Shirt");
 
         ////////////////////////////////////////////////////////////////////Update Food
-        preparedStatement.setInt (1,productEntity.getNumberOfPizza());
-        preparedStatement.setString (2,"Pizza");
+        preparedStatement.setInt(1, productEntity.getNumberOfPizza());
+        preparedStatement.setString(2, "Pizza");
 
-        preparedStatement.setInt (1,productEntity.getNumberOfHotDog());
-        preparedStatement.setString (2,"HotDog");
+        preparedStatement.setInt(1, productEntity.getNumberOfHotDog());
+        preparedStatement.setString(2, "HotDog");
 
-        preparedStatement.setInt (1,productEntity.getNumberOfTurkishKebab());
-        preparedStatement.setString (2,"Turkish Kebab");
+        preparedStatement.setInt(1, productEntity.getNumberOfTurkishKebab());
+        preparedStatement.setString(2, "Turkish Kebab");
 
         ////////////////////////////////////////////////////////////////////Update Books
-        preparedStatement.setInt (1,productEntity.getNumberOfLittlePrince());
-        preparedStatement.setString (2,"Little Prince");
+        preparedStatement.setInt(1, productEntity.getNumberOfLittlePrince());
+        preparedStatement.setString(2, "Little Prince");
 
-        preparedStatement.setInt (1,productEntity.getNumberOfWarAndPeace());
-        preparedStatement.setString (2,"War And Peace");
+        preparedStatement.setInt(1, productEntity.getNumberOfWarAndPeace());
+        preparedStatement.setString(2, "War And Peace");
 
-        preparedStatement.setInt (1,productEntity.getNumberOfMetro2034());
-        preparedStatement.setString (2,"Metro 2034");
+        preparedStatement.setInt(1, productEntity.getNumberOfMetro2034());
+        preparedStatement.setString(2, "Metro 2034");
 
         ////////////////////////////////////////////////////////////////////Update Kitchen
-        preparedStatement.setInt (1,productEntity.getNumberOfFork());
-        preparedStatement.setString (2,"Fork");
+        preparedStatement.setInt(1, productEntity.getNumberOfFork());
+        preparedStatement.setString(2, "Fork");
 
-        preparedStatement.setInt (1,productEntity.getNumberOfOven());
-        preparedStatement.setString (2,"Oven");
+        preparedStatement.setInt(1, productEntity.getNumberOfOven());
+        preparedStatement.setString(2, "Oven");
 
-        preparedStatement.setInt (1,productEntity.getNumberOfPlate());
-        preparedStatement.setString (2,"Plate");
+        preparedStatement.setInt(1, productEntity.getNumberOfPlate());
+        preparedStatement.setString(2, "Plate");
 
         ////////////////////////////////////////////////////////////////////Update Tools
-        preparedStatement.setInt (1,productEntity.getNumberOfTape());
-        preparedStatement.setString (2,"Tape");
+        preparedStatement.setInt(1, productEntity.getNumberOfTape());
+        preparedStatement.setString(2, "Tape");
 
-        preparedStatement.setInt (1,productEntity.getNumberOfAxe());
-        preparedStatement.setString (2,"Axe");
+        preparedStatement.setInt(1, productEntity.getNumberOfAxe());
+        preparedStatement.setString(2, "Axe");
 
-        preparedStatement.setInt (1,productEntity.getNumberOfBat());
-        preparedStatement.setString (2,"Bat");
+        preparedStatement.setInt(1, productEntity.getNumberOfBat());
+        preparedStatement.setString(2, "Bat");
 
-        preparedStatement.executeUpdate ();
+        preparedStatement.executeUpdate();
     }
-////////////////////////////////////////////////////////////////////////////////////
-public void insertEmployees(EmployeeEntity employeeEntity)throws Exception{
-        preparedStatement=connection.prepareStatement("insert into Employees(Names,fathername,Age,PhoneNumber)values(?,?,?,?)");
-        preparedStatement.setString(1,employeeEntity.getName());
-        preparedStatement.setString(2,employeeEntity.getFathername());
-        preparedStatement.setInt(3,employeeEntity.getAge());
-        preparedStatement.setString(4,employeeEntity.getPhoneNumber());
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    public void insertEmployees(EmployeeEntity employeeEntity) throws Exception {
+        preparedStatement = connection.prepareStatement("insert into Employees(Names,fathername,Age,PhoneNumber)values(?,?,?,?)");
+        preparedStatement.setString(1, employeeEntity.getName());
+        preparedStatement.setString(2, employeeEntity.getFathername());
+        preparedStatement.setInt(3, employeeEntity.getAge());
+        preparedStatement.setString(4, employeeEntity.getPhoneNumber());
         preparedStatement.executeUpdate();
 
-}
-///////////////////////////////////////////////////////////////////////////////////////
-public void insertComments(CommentEntity commentEntity)throws Exception{
-        preparedStatement=connection.prepareStatement("insert into Comments(idea)values (?)");
-        preparedStatement.setString(1,commentEntity.getComment());
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////
+    public void insertComments(CommentEntity commentEntity) throws Exception {
+        preparedStatement = connection.prepareStatement("insert into Comments(idea)values (?)");
+        preparedStatement.setString(1, commentEntity.getComment());
         preparedStatement.executeUpdate();
 
-}
-/////////////////////////////////////////////////////////////////////////////////////////////////
-public void insertpayments(PaymentEntity paymentEntity)throws Exception{
-        preparedStatement=connection.prepareStatement("insert into payments(Dates,Hours,CardNumber,Price)values (?,?,?,?)");
-        preparedStatement.setString(1,paymentEntity.getDate());
-        preparedStatement.setInt(2,paymentEntity.getHour());
-        preparedStatement.setString(3,paymentEntity.getCardNumber());
-        preparedStatement.setString(4,paymentEntity.getPrice());
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////
+    public void insertpayments(PaymentEntity paymentEntity) throws Exception {
+        preparedStatement = connection.prepareStatement("insert into payments(Dates,Hours,CardNumber,Price)values (?,?,?,?)");
+        preparedStatement.setString(1, paymentEntity.getDate());
+        preparedStatement.setInt(2, paymentEntity.getHour());
+        preparedStatement.setString(3, paymentEntity.getCardNumber());
+        preparedStatement.setString(4, paymentEntity.getPrice());
         preparedStatement.executeUpdate();
-}
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public List<CommentEntity> selectcomments()throws Exception{
-        preparedStatement=connection.prepareStatement("select * from Comments");
-        ResultSet resultSet=preparedStatement.executeQuery();
-        List<CommentEntity> commentEntityList=new ArrayList<>();
-        while(resultSet.next()){
-            CommentEntity commentEntity=new CommentEntity();
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public List<CommentEntity> selectcomments() throws Exception {
+        preparedStatement = connection.prepareStatement("select * from Comments");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        List<CommentEntity> commentEntityList = new ArrayList<>();
+        while (resultSet.next()) {
+            CommentEntity commentEntity = new CommentEntity();
             commentEntity.setComment(resultSet.getString("Comment"));
             commentEntityList.add(commentEntity);
         }
         return commentEntityList;
     }
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void commit() throws Exception {
         connection.commit();

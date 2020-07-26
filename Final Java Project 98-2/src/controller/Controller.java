@@ -5,33 +5,35 @@ import model.entity.CommentEntity;
 import model.entity.PaymentEntity;
 import model.entity.ProductEntity;
 import model.entity.UserEntity;
+import model.repository.Repository;
 import model.service.Service;
 
 
 public class Controller {
     Scanner input=new Scanner(System.in);
-    public void editor(String name, String PhoneNumber, String Address, String MeliCode, UserEntity temp){
+
+    public void insertUserInfo(String name, String phoneNumber, String address, String meliCode){
         try{
-            Service.getInstance().save(new UserEntity().setName(temp.getName()).setPhoneNumber(temp.getPhoneNumber())
-                    .setAddress(temp.getAddress()).setMeliCode(temp.getMeliCode()));
+            Service.getInstance().save(new UserEntity().setName(name).setPhoneNumber(phoneNumber)
+                    .setAddress(address).setMeliCode(meliCode));
         }catch (Exception e){
-            System.out.println("Failed to save"+e.getMessage());
+            System.out.println("Failed to save . Error : "+e.getMessage());
         }
     }
     /////////////////////////////////////////////////////////////////
-    public void paymenteditor(PaymentEntity name){
+    public void insertPayments(PaymentEntity name){
         try{
             Service.getInstance().savePayment(new PaymentEntity().setDate(name.getDate()).setHour(name.getHour()).setCardNumber(name.getCardNumber()).setPrice(name.getPrice()));
         }catch (Exception e){
-            System.out.println("failed to save"+e.getMessage());
+            System.out.println("Failed to save . Error : "+e.getMessage());
         }
     }
     //////////////////////////////////////////////////////////////////////
-    public void commenteditor(CommentEntity c){
+    public void insertComments(String comment){
         try{
-            Service.getInstance().savecomment(new CommentEntity().setComment(c.getComment()));
+            Service.getInstance().savecomment(new CommentEntity().setComment(comment));
         }catch (Exception e){
-            System.out.println("failed to save"+e.getMessage());
+            System.out.println("Failed to save . Error : "+e.getMessage());
         }
     }
     ////////////////////////////////////////////////////////////////////////////////
@@ -40,7 +42,7 @@ public class Controller {
         try{
             Service.getInstance().report();
         }catch (Exception e){
-            System.out.println("failed to report"+e.getMessage());
+            System.out.println("Failed to report . Error : "+e.getMessage());
         }
         for(UserEntity userEntity : userEntityList){
             System.out.println(userEntity.getName());
@@ -55,7 +57,7 @@ public class Controller {
         try{
             Service.getInstance().reportproduct();
         }catch (Exception e){
-            System.out.println("failed to report"+e.getMessage());
+            System.out.println("Failed to report . Error : "+e.getMessage());
         }
         for(ProductEntity productEntity:productEntityList){
             System.out.println(productEntity.getNumberOfTankTop());
@@ -81,7 +83,7 @@ public class Controller {
         try{
             Service.getInstance().reportpayment();
         }catch (Exception e){
-            System.out.println("failed to report"+e.getMessage());
+            System.out.println("Failed to report . Error : "+e.getMessage());
         }
         for(PaymentEntity paymentEntity : paymentEntityList){
             System.out.println(paymentEntity.getDate());
@@ -96,7 +98,7 @@ public class Controller {
         try{
             Service.getInstance().reportcomment();
         }catch (Exception e){
-            System.out.println("failed to report"+e.getMessage());
+            System.out.println("Failed to report . Error : "+e.getMessage());
         }
         for(CommentEntity commentEntity:commentEntityList){
             System.out.println(commentEntity.getComment());

@@ -4,6 +4,8 @@
 
 package view;
 
+import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 import net.miginfocom.swing.*;
 
@@ -15,6 +17,20 @@ public class Menu extends JFrame {
         initComponents();
     }
 
+    private void buyButtonActionPerformed(ActionEvent e) {
+        Buy buy = new Buy();
+        dispose();
+        buy.setVisible(true);
+        buy.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+
+    private void commentButtonActionPerformed(ActionEvent e) {
+        Comment comment = new Comment();
+        dispose();
+        comment.setVisible(true);
+        comment.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - mohammad
@@ -23,7 +39,7 @@ public class Menu extends JFrame {
 
         //======== this ========
         setTitle("Menu");
-        var contentPane = getContentPane();
+        Container contentPane = getContentPane();
         contentPane.setLayout(new MigLayout(
             "hidemode 3",
             // columns
@@ -38,10 +54,12 @@ public class Menu extends JFrame {
 
         //---- buyButton ----
         buyButton.setText("Buying");
+        buyButton.addActionListener(e -> buyButtonActionPerformed(e));
         contentPane.add(buyButton, "cell 1 1");
 
         //---- commentButton ----
         commentButton.setText("Send Comment");
+        commentButton.addActionListener(e -> commentButtonActionPerformed(e));
         contentPane.add(commentButton, "cell 2 1");
         pack();
         setLocationRelativeTo(getOwner());

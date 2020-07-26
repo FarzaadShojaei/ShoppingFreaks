@@ -36,6 +36,7 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "phoneTextField"
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyTyped", "phoneTextFieldKeyTyped", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 2 2"
 			} )
@@ -58,12 +59,14 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "meliCodeTextField"
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyTyped", "meliCodeTextFieldKeyTyped", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 2 4"
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button1"
 				"text": "Sign Up"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button1ActionPerformed", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 2 5"
 			} )

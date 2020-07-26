@@ -4,6 +4,7 @@
 
 package view.buy;
 
+import java.awt.*;
 import javax.swing.*;
 import net.miginfocom.swing.*;
 
@@ -20,11 +21,11 @@ public class Kitchen extends JFrame {
         // Generated using JFormDesigner Evaluation license - mohammad
 
         //======== this ========
-        var contentPane = getContentPane();
+        Container contentPane = getContentPane();
         contentPane.setLayout(new MigLayout(
             "hidemode 3",
             // columns
-            "[fill]" +
+            "[30,fill]" +
             "[fill]",
             // rows
             "[]" +

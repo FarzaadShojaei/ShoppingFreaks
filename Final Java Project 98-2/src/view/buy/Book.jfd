@@ -5,8 +5,8 @@ new FormModel {
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 			"$layoutConstraints": "hidemode 3"
-			"$columnConstraints": "[fill][fill]"
-			"$rowConstraints": "[][][]"
+			"$columnConstraints": "[80,fill][87,fill][79,fill]"
+			"$rowConstraints": "[42][42][44]"
 		} ) {
 			name: "this"
 		}, new FormLayoutConstraints( null ) {

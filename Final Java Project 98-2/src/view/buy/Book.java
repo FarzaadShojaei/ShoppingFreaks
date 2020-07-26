@@ -4,6 +4,7 @@
 
 package view.buy;
 
+import java.awt.*;
 import javax.swing.*;
 import net.miginfocom.swing.*;
 
@@ -20,16 +21,17 @@ public class Book extends JFrame {
         // Generated using JFormDesigner Evaluation license - mohammad
 
         //======== this ========
-        var contentPane = getContentPane();
+        Container contentPane = getContentPane();
         contentPane.setLayout(new MigLayout(
             "hidemode 3",
             // columns
-            "[fill]" +
-            "[fill]",
+            "[80,fill]" +
+            "[87,fill]" +
+            "[79,fill]",
             // rows
-            "[]" +
-            "[]" +
-            "[]"));
+            "[42]" +
+            "[42]" +
+            "[44]"));
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents

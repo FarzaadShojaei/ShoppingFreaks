@@ -4,14 +4,59 @@
 
 package view;
 
+import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 import net.miginfocom.swing.*;
+import view.buy.*;
 
 /**
  * @author mohammad
  */
 public class Buy extends JFrame {
     public Buy() { initComponents(); }
+
+    private void menubuttonActionPerformed(ActionEvent e) {
+        dispose();
+        Menu menu = new Menu();
+        menu.setVisible(true);
+        menu.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+
+    private void clothesbuttonActionPerformed(ActionEvent e) {
+        dispose();
+        Cloth cloth = new Cloth();
+        cloth.setVisible(true);
+        cloth.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+
+    private void foodbuttonActionPerformed(ActionEvent e) {
+        dispose();
+        Food food = new Food();
+        food.setVisible(true);
+        food.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+
+    private void bookbuttonActionPerformed(ActionEvent e) {
+        dispose();
+        Book book = new Book();
+        book.setVisible(true);
+        book.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+
+    private void kitchenbuttonActionPerformed(ActionEvent e) {
+        dispose();
+        Kitchen kitchen = new Kitchen();
+        kitchen.setVisible(true);
+        kitchen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+
+    private void toolsbuttonActionPerformed(ActionEvent e) {
+        dispose();
+        Tools tools = new Tools();
+        tools.setVisible(true);
+        tools.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -24,7 +69,7 @@ public class Buy extends JFrame {
         menubutton = new JButton();
 
         //======== this ========
-        var contentPane = getContentPane();
+        Container contentPane = getContentPane();
         contentPane.setLayout(new MigLayout(
             "hidemode 3",
             // columns
@@ -41,26 +86,32 @@ public class Buy extends JFrame {
 
         //---- clothesbutton ----
         clothesbutton.setText("Clothes");
+        clothesbutton.addActionListener(e -> clothesbuttonActionPerformed(e));
         contentPane.add(clothesbutton, "cell 1 0");
 
         //---- foodbutton ----
         foodbutton.setText("Food");
+        foodbutton.addActionListener(e -> foodbuttonActionPerformed(e));
         contentPane.add(foodbutton, "cell 1 1");
 
         //---- bookbutton ----
         bookbutton.setText("Book & etc");
+        bookbutton.addActionListener(e -> bookbuttonActionPerformed(e));
         contentPane.add(bookbutton, "cell 1 2");
 
         //---- kitchenbutton ----
         kitchenbutton.setText("Home & Kitchen");
+        kitchenbutton.addActionListener(e -> kitchenbuttonActionPerformed(e));
         contentPane.add(kitchenbutton, "cell 1 3");
 
         //---- toolsbutton ----
         toolsbutton.setText("Tools");
+        toolsbutton.addActionListener(e -> toolsbuttonActionPerformed(e));
         contentPane.add(toolsbutton, "cell 1 4");
 
         //---- menubutton ----
         menubutton.setText("Menu");
+        menubutton.addActionListener(e -> menubuttonActionPerformed(e));
         contentPane.add(menubutton, "cell 0 5");
         pack();
         setLocationRelativeTo(getOwner());

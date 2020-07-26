@@ -4,6 +4,7 @@
 
 package view.buy;
 
+import java.awt.*;
 import javax.swing.*;
 import net.miginfocom.swing.*;
 
@@ -20,13 +21,13 @@ public class Cloth extends JFrame {
         // Generated using JFormDesigner Evaluation license - mohammad
 
         //======== this ========
-        var contentPane = getContentPane();
+        Container contentPane = getContentPane();
         contentPane.setLayout(new MigLayout(
             "hidemode 3",
             // columns
             "[135,fill]" +
             "[160,fill]" +
-            "[125,fill]",
+            "[132,fill]",
             // rows
             "[44]" +
             "[46]" +

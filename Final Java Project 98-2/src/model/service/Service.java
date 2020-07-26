@@ -9,30 +9,39 @@ import model.repository.Repository;
 import java.util.List;
 
 public class Service {
-    private Service(){};
-    private static Service service=new Service();
-    public static Service getInstance(){return service;}
-    public void save(UserEntity userEntity)throws Exception {
+    private Service() {
+    }
+
+    ;
+    private static Service service = new Service();
+
+    public static Service getInstance() {
+        return service;
+    }
+
+    public void save(UserEntity userEntity) throws Exception {
         try (Repository repository = new Repository()) {
             repository.insertUserInfo(userEntity);
             repository.commit();
         }
     }
-    public void savePayment(PaymentEntity paymentEntity)throws Exception{
-        try(Repository repository=new Repository()){
+
+    public void savePayment(PaymentEntity paymentEntity) throws Exception {
+        try (Repository repository = new Repository()) {
             repository.insertpayments(paymentEntity);
             repository.commit();
         }
     }
-    public void savecomment(CommentEntity commentEntity)throws Exception{
-        try (Repository repository=new Repository()){
+
+    public void savecomment(CommentEntity commentEntity) throws Exception {
+        try (Repository repository = new Repository()) {
             repository.insertComments(commentEntity);
             repository.commit();
         }
 
     }
 
-    public void initialization (ProductEntity productEntity) throws Exception {
+    public void initialization(ProductEntity productEntity) throws Exception {
         try (Repository repository = new Repository()) {
 
             productEntity.setNumberOfAxe(2);
@@ -51,40 +60,52 @@ public class Service {
             productEntity.setNumberOfTurkishKebab(2);
             productEntity.setNumberOfWarAndPeace(2);
 
-            repository.insertProducts (productEntity);
-            repository.commit ();
+            repository.insertProducts(productEntity);
+            repository.commit();
         }
     }
-///////////////////////////////////////////////////////
-    public List<PaymentEntity>reportpayment()throws Exception{
+
+    public void insertProducts() throws Exception {
+        try (Repository repository = new Repository()) {
+            repository.insertProducts(ProductEntity product);
+            repository.commit();
+        }
+
+    }
+
+    ///////////////////////////////////////////////////////
+    public List<PaymentEntity> reportpayment() throws Exception {
         List<PaymentEntity> paymentEntities;
-        try(Repository repository=new Repository()){
-            paymentEntities=repository.selectpayments();
+        try (Repository repository = new Repository()) {
+            paymentEntities = repository.selectpayments();
         }
         return paymentEntities;
     }
+
     //////////////////////////////////////////////////////////
-    public List<ProductEntity>reportproduct()throws Exception{
+    public List<ProductEntity> reportproduct() throws Exception {
         List<ProductEntity> productEntities;
-        try(Repository repository=new Repository()){
-            productEntities=repository.selectproducts();
+        try (Repository repository = new Repository()) {
+            productEntities = repository.selectproducts();
         }
         return productEntities;
     }
+
     //////////////////////////////////////////////////////////////
-    public List<CommentEntity>reportcomment()throws Exception{
-        List<CommentEntity>commentEntities;
-        try(Repository repository=new Repository()){
-            commentEntities=repository.selectcomments();
+    public List<CommentEntity> reportcomment() throws Exception {
+        List<CommentEntity> commentEntities;
+        try (Repository repository = new Repository()) {
+            commentEntities = repository.selectcomments();
         }
         return commentEntities;
     }
+
     /////////////////////////////////////////////////////////////////
-  public List<UserEntity>report()throws Exception{
-      List<UserEntity> entities;
-      try(Repository repository=new Repository()){
-          entities=repository.select();
-      }
-      return entities;
-  }
+    public List<UserEntity> report() throws Exception {
+        List<UserEntity> entities;
+        try (Repository repository = new Repository()) {
+            entities = repository.select();
+        }
+        return entities;
+    }
 }

@@ -4,7 +4,11 @@
 
 package view;
 
+import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
+
+import controller.Controller;
 import net.miginfocom.swing.*;
 
 /**
@@ -13,6 +17,25 @@ import net.miginfocom.swing.*;
 public class SignUp extends JFrame {
     public SignUp() {
         initComponents();
+    }
+
+    private void button1ActionPerformed(ActionEvent e) {
+        Controller controller = new Controller();
+        controller.insertUserInfo(nameTextField.getText(),phoneTextField.getText(),addressTextField.getText(),meliCodeTextField.getText());
+        dispose();
+        Menu menu = new Menu();
+        menu.setVisible(true);
+        menu.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+
+    private void phoneTextFieldKeyTyped(KeyEvent e) {
+        if (e.getKeyChar() < '0' || e.getKeyChar() > '9')
+            e.setKeyChar('\0');
+    }
+
+    private void meliCodeTextFieldKeyTyped(KeyEvent e) {
+        if (e.getKeyChar() < '0' || e.getKeyChar() > '9')
+            e.setKeyChar('\0');
     }
 
     private void initComponents() {
@@ -31,7 +54,7 @@ public class SignUp extends JFrame {
 
         //======== this ========
         setTitle("SignUp");
-        var contentPane = getContentPane();
+        Container contentPane = getContentPane();
         contentPane.setLayout(new MigLayout(
             "hidemode 3",
             // columns
@@ -61,6 +84,14 @@ public class SignUp extends JFrame {
         //---- label3 ----
         label3.setText("Phone Number :");
         contentPane.add(label3, "cell 1 2");
+
+        //---- phoneTextField ----
+        phoneTextField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                phoneTextFieldKeyTyped(e);
+            }
+        });
         contentPane.add(phoneTextField, "cell 2 2");
 
         //---- label4 ----
@@ -71,10 +102,19 @@ public class SignUp extends JFrame {
         //---- label5 ----
         label5.setText("Meli Code :");
         contentPane.add(label5, "cell 1 4");
+
+        //---- meliCodeTextField ----
+        meliCodeTextField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                meliCodeTextFieldKeyTyped(e);
+            }
+        });
         contentPane.add(meliCodeTextField, "cell 2 4");
 
         //---- button1 ----
         button1.setText("Sign Up");
+        button1.addActionListener(e -> button1ActionPerformed(e));
         contentPane.add(button1, "cell 2 5");
         pack();
         setLocationRelativeTo(getOwner());
