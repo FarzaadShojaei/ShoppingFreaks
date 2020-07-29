@@ -12,7 +12,6 @@ public class Service {
     private Service() {
     }
 
-    ;
     private static Service service = new Service();
 
     public static Service getInstance() {
@@ -65,15 +64,7 @@ public class Service {
         }
     }
 
-    public void insertProducts() throws Exception {
-        try (Repository repository = new Repository()) {
-            repository.insertProducts(ProductEntity product);
-            repository.commit();
-        }
-
-    }
-
-    ///////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////// Reports
     public List<PaymentEntity> reportpayment() throws Exception {
         List<PaymentEntity> paymentEntities;
         try (Repository repository = new Repository()) {
@@ -82,7 +73,7 @@ public class Service {
         return paymentEntities;
     }
 
-    //////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////
     public List<ProductEntity> reportproduct() throws Exception {
         List<ProductEntity> productEntities;
         try (Repository repository = new Repository()) {
@@ -91,7 +82,7 @@ public class Service {
         return productEntities;
     }
 
-    //////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////
     public List<CommentEntity> reportcomment() throws Exception {
         List<CommentEntity> commentEntities;
         try (Repository repository = new Repository()) {
@@ -101,11 +92,30 @@ public class Service {
     }
 
     /////////////////////////////////////////////////////////////////
+    public String reportPrice(String name) throws Exception {
+        Repository repository = new Repository();
+        return repository.selectPrice(name);
+    }
+
+    /////////////////////////////////////////////////////////////////
     public List<UserEntity> report() throws Exception {
         List<UserEntity> entities;
         try (Repository repository = new Repository()) {
             entities = repository.select();
         }
         return entities;
+    }
+
+    /////////////////////////////////////////////////////////////////
+    public int reportNumbers(String name) throws Exception {
+        Repository repository = new Repository();
+        return repository.selectNumber(name);
+    }
+
+    ///////////////////////////////////////////////////////////////// Removes
+    public void removeProducts() throws Exception {
+        Repository repository = new Repository();
+        repository.deleteProducts();
+        repository.commit();
     }
 }

@@ -1,4 +1,5 @@
 package controller;
+
 import java.util.*;
 
 import model.entity.CommentEntity;
@@ -10,56 +11,67 @@ import model.service.Service;
 
 
 public class Controller {
-    Scanner input=new Scanner(System.in);
+    Scanner input = new Scanner(System.in);
+    public void initNumberOfProducts (){
+        try {
+            Service.getInstance().initialization(new ProductEntity());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-    public void insertUserInfo(String name, String phoneNumber, String address, String meliCode){
-        try{
+    public void insertUserInfo(String name, String phoneNumber, String address, String meliCode) {
+        try {
             Service.getInstance().save(new UserEntity().setName(name).setPhoneNumber(phoneNumber)
                     .setAddress(address).setMeliCode(meliCode));
-        }catch (Exception e){
-            System.out.println("Failed to save . Error : "+e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Failed to save . Error : " + e.getMessage());
         }
     }
+
     /////////////////////////////////////////////////////////////////
-    public void insertPayments(PaymentEntity name){
-        try{
+    public void insertPayments(PaymentEntity name) {
+        try {
             Service.getInstance().savePayment(new PaymentEntity().setDate(name.getDate()).setHour(name.getHour()).setCardNumber(name.getCardNumber()).setPrice(name.getPrice()));
-        }catch (Exception e){
-            System.out.println("Failed to save . Error : "+e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Failed to save . Error : " + e.getMessage());
         }
     }
-    //////////////////////////////////////////////////////////////////////
-    public void insertComments(String comment){
-        try{
+
+    /////////////////////////////////////////////////////////////////
+    public void insertComments(String comment) {
+        try {
             Service.getInstance().savecomment(new CommentEntity().setComment(comment));
-        }catch (Exception e){
-            System.out.println("Failed to save . Error : "+e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Failed to save . Error : " + e.getMessage());
         }
     }
-    ////////////////////////////////////////////////////////////////////////////////
-    public void reporter(){
-        List<UserEntity> userEntityList =null;
-        try{
+
+    /////////////////////////////////////////////////////////////////
+    public void reporter() {
+        List<UserEntity> userEntityList = null;
+        try {
             Service.getInstance().report();
-        }catch (Exception e){
-            System.out.println("Failed to report . Error : "+e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Failed to report . Error : " + e.getMessage());
         }
-        for(UserEntity userEntity : userEntityList){
+        for (UserEntity userEntity : userEntityList) {
             System.out.println(userEntity.getName());
             System.out.println(userEntity.getPhoneNumber());
             System.out.println(userEntity.getAddress());
             System.out.println(userEntity.getMeliCode());
         }
     }
-    ///////////////////////////////////////////////////////
-    public void productreporter(){
-        List<ProductEntity> productEntityList=null;
-        try{
+
+    /////////////////////////////////////////////////////////////////
+    public void productreporter() {
+        List<ProductEntity> productEntityList = null;
+        try {
             Service.getInstance().reportproduct();
-        }catch (Exception e){
-            System.out.println("Failed to report . Error : "+e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Failed to report . Error : " + e.getMessage());
         }
-        for(ProductEntity productEntity:productEntityList){
+        for (ProductEntity productEntity : productEntityList) {
             System.out.println(productEntity.getNumberOfTankTop());
             System.out.println(productEntity.getNumberOfJeans());
             System.out.println(productEntity.getNumberOfShirt());
@@ -77,32 +89,64 @@ public class Controller {
             System.out.println(productEntity.getNumberOfBat());
         }
     }
+
     /////////////////////////////////////////////////////////////////
-    public void paymentreporter(){
-        List<PaymentEntity>paymentEntityList=null;
-        try{
+    public void paymentreporter() {
+        List<PaymentEntity> paymentEntityList = null;
+        try {
             Service.getInstance().reportpayment();
-        }catch (Exception e){
-            System.out.println("Failed to report . Error : "+e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Failed to report . Error : " + e.getMessage());
         }
-        for(PaymentEntity paymentEntity : paymentEntityList){
+        for (PaymentEntity paymentEntity : paymentEntityList) {
             System.out.println(paymentEntity.getDate());
             System.out.println(paymentEntity.getHour());
             System.out.println(paymentEntity.getCardNumber());
             System.out.println(paymentEntity.getPrice());
         }
     }
-    ////////////////////////////////////////////////////////////////////
-    public void commentreporter(){
-        List<CommentEntity>commentEntityList=null;
-        try{
+
+    /////////////////////////////////////////////////////////////////
+    public void commentreporter() {
+        List<CommentEntity> commentEntityList = null;
+        try {
             Service.getInstance().reportcomment();
-        }catch (Exception e){
-            System.out.println("Failed to report . Error : "+e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Failed to report . Error : " + e.getMessage());
         }
-        for(CommentEntity commentEntity:commentEntityList){
+        for (CommentEntity commentEntity : commentEntityList) {
             System.out.println(commentEntity.getComment());
         }
     }
-    /////////////////////////////////////////////////////////
+
+    /////////////////////////////////////////////////////////////////
+    public String priceReporter(String name) {
+        String price = "";
+        try {
+            price = Service.getInstance().reportPrice(name);
+        } catch (Exception e) {
+            System.out.println("Failed to get price . Error : " + e.getMessage());
+        }
+        return price;
+    }
+
+    /////////////////////////////////////////////////////////////////
+    public int numberReporter(String name) {
+        int number = 0;
+        try {
+            number = Service.getInstance().reportNumbers(name);
+        } catch (Exception e) {
+            System.out.println("Failed to get price . Error : " + e.getMessage());
+        }
+        return number;
+    }
+
+    /////////////////////////////////////////////////////////////////
+    public void removeProducts(){
+        try {
+            Service.getInstance().removeProducts();
+        } catch (Exception e) {
+            System.out.println("Failed to delete from products . Error : " + e.getMessage());
+        }
+    }
 }

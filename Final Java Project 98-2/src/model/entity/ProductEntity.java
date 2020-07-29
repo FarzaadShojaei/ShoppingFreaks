@@ -1,6 +1,8 @@
 package model.entity;
 
 public class ProductEntity {
+    private String price;
+
     private int numberOfTankTop;
     private int numberOfJeans;
     private int numberOfShirt;
@@ -18,6 +20,11 @@ public class ProductEntity {
     private int numberOfBat;
 
     //////////////////////////////////////////////// Setters
+    public ProductEntity setPrice(String price) {
+        this.price = price;
+        return this;
+    }
+
     public ProductEntity setNumberOfTankTop(int numberOfTankTop) {
         this.numberOfTankTop = numberOfTankTop;
         return this;
@@ -94,6 +101,10 @@ public class ProductEntity {
     }
 
     //////////////////////////////////////////////// Getters
+    public String getPrice() {
+        return price;
+    }
+
     public int getNumberOfTankTop() {
         return numberOfTankTop;
     }

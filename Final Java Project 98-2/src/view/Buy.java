@@ -58,6 +58,13 @@ public class Buy extends JFrame {
         tools.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
+    private void button1ActionPerformed(ActionEvent e) {
+        dispose();
+        Cart cart = new Cart();
+        cart.setVisible(true);
+        cart.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - mohammad
@@ -67,15 +74,17 @@ public class Buy extends JFrame {
         kitchenbutton = new JButton();
         toolsbutton = new JButton();
         menubutton = new JButton();
+        cart = new JButton();
 
         //======== this ========
+        setTitle("Buy");
         Container contentPane = getContentPane();
         contentPane.setLayout(new MigLayout(
             "hidemode 3",
             // columns
-            "[92,fill]" +
+            "[100,fill]" +
             "[96,fill]" +
-            "[104,fill]",
+            "[100,fill]",
             // rows
             "[43]" +
             "[39]" +
@@ -113,6 +122,11 @@ public class Buy extends JFrame {
         menubutton.setText("Menu");
         menubutton.addActionListener(e -> menubuttonActionPerformed(e));
         contentPane.add(menubutton, "cell 0 5");
+
+        //---- cart ----
+        cart.setText("Cart");
+        cart.addActionListener(e -> button1ActionPerformed(e));
+        contentPane.add(cart, "cell 2 5");
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -126,5 +140,6 @@ public class Buy extends JFrame {
     private JButton kitchenbutton;
     private JButton toolsbutton;
     private JButton menubutton;
+    private JButton cart;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

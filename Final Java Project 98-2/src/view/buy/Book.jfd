@@ -5,13 +5,85 @@ new FormModel {
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 			"$layoutConstraints": "hidemode 3"
-			"$columnConstraints": "[80,fill][87,fill][79,fill]"
-			"$rowConstraints": "[42][42][44]"
+			"$columnConstraints": "[132,fill][137,fill][129,fill]"
+			"$rowConstraints": "[44][46][50][42][25]"
 		} ) {
 			name: "this"
+			"title": "Books"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Little Prince"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 0,alignx center,growx 0"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "War And Peace"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 0,alignx center,growx 0"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "Metro 2034"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 0,alignx center,growx 0"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "littlePrincePrice"
+				"text": "Price"
+				addEvent( new FormEvent( "javax.swing.event.AncestorListener", "ancestorAdded", "littlePrincePriceAncestorAdded", true ) )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 1,alignx center,growx 0"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "warAndPeacePrice"
+				"text": "Price"
+				addEvent( new FormEvent( "javax.swing.event.AncestorListener", "ancestorAdded", "warAndPeacePriceAncestorAdded", true ) )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 1,alignx center,growx 0"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "metro2034Price"
+				"text": "Price"
+				addEvent( new FormEvent( "javax.swing.event.AncestorListener", "ancestorAdded", "metro2034PriceAncestorAdded", true ) )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 1,alignx center,growx 0"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "littlePrinceATC"
+				"text": "Add to Cart"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 2"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "warAndPeaceATC"
+				"text": "Add to Cart"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 1 2"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "metro2034ATC"
+				"text": "Add to Cart"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 2"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "menu"
+				"text": "Menu"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuActionPerformed", true ) )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 3"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "cart"
+				"text": "Cart"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "cartActionPerformed", true ) )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 3"
+			} )
 		}, new FormLayoutConstraints( null ) {
+			"size": new java.awt.Dimension( 470, 320 )
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 400, 300 )
 		} )
 	}
 }

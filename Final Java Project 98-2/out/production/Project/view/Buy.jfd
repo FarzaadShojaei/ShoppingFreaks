@@ -5,10 +5,11 @@ new FormModel {
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 			"$layoutConstraints": "hidemode 3"
-			"$columnConstraints": "[92,fill][96,fill][104,fill]"
+			"$columnConstraints": "[100,fill][96,fill][100,fill]"
 			"$rowConstraints": "[43][39][41][37][38][27]"
 		} ) {
 			name: "this"
+			"title": "Buy"
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "clothesbutton"
 				"text": "Clothes"
@@ -50,6 +51,13 @@ new FormModel {
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menubuttonActionPerformed", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 0 5"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "cart"
+				"text": "Cart"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button1ActionPerformed", true ) )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 5"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
