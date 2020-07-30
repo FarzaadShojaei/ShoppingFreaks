@@ -14,8 +14,12 @@ public class Main {
         SignUp signUp = new SignUp();
         signUp.setVisible(true);
         signUp.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-//        if ()
-//            controller.removeProducts();
 
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            @Override
+            public void run() {
+                controller.removeProducts();
+            }
+        });
     }
 }

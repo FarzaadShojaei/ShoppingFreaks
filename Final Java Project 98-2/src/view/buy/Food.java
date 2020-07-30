@@ -39,24 +39,39 @@ public class Food extends JFrame {
     private void pizzaPriceAncestorAdded(AncestorEvent e) {
         Controller controller = new Controller();
         pizzaPrice.setText(controller.priceReporter("Pizza") + " Toman");
+    }
+
+    private void hotDogPriceAncestorAdded(AncestorEvent e) {
+        Controller controller = new Controller();
+        hotDogPrice.setText(controller.priceReporter("HotDog") + " Toman");
+    }
+
+    private void kebabPriceAncestorAdded(AncestorEvent e) {
+        Controller controller = new Controller();
+        kebabPrice.setText(controller.priceReporter("Turkish Kebab") + " Toman");
+    }
+
+    private void pizzaATCActionPerformed(ActionEvent e) {
+        Controller controller = new Controller();
+        controller.updateProducts("Pizza");
         if (controller.numberReporter("Pizza") == 0){
             pizzaATC.setEnabled(false);
             pizzaPrice.setText("Not Available");
         }
     }
 
-    private void hotDogPriceAncestorAdded(AncestorEvent e) {
+    private void hotDogATCActionPerformed(ActionEvent e) {
         Controller controller = new Controller();
-        hotDogPrice.setText(controller.priceReporter("HotDog") + " Toman");
+        controller.updateProducts("HotDog");
         if (controller.numberReporter("HotDog") == 0){
             hotDogATC.setEnabled(false);
             hotDogPrice.setText("Not Available");
         }
     }
 
-    private void kebabPriceAncestorAdded(AncestorEvent e) {
+    private void kebabATCActionPerformed(ActionEvent e) {
         Controller controller = new Controller();
-        kebabPrice.setText(controller.priceReporter("Turkish Kebab") + " Toman");
+        controller.updateProducts("Turkish Kebab");
         if (controller.numberReporter("Turkish Kebab") == 0){
             kebabATC.setEnabled(false);
             kebabPrice.setText("Not Available");
@@ -150,14 +165,17 @@ public class Food extends JFrame {
 
         //---- pizzaATC ----
         pizzaATC.setText("Add to Cart");
+        pizzaATC.addActionListener(e -> pizzaATCActionPerformed(e));
         contentPane.add(pizzaATC, "cell 0 2");
 
         //---- hotDogATC ----
         hotDogATC.setText("Add to Cart");
+        hotDogATC.addActionListener(e -> hotDogATCActionPerformed(e));
         contentPane.add(hotDogATC, "cell 1 2");
 
         //---- kebabATC ----
         kebabATC.setText("Add to Cart");
+        kebabATC.addActionListener(e -> kebabATCActionPerformed(e));
         contentPane.add(kebabATC, "cell 2 2");
 
         //---- menu ----

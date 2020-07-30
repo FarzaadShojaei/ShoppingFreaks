@@ -48,6 +48,31 @@ public class Controller {
     }
 
     /////////////////////////////////////////////////////////////////
+    public void insertDocuments(String cardNumber, String totalPrice) {
+        try {
+            Service.getInstance().saveDocuments(new UserEntity().setCardNumber(cardNumber).setTotalPrice(totalPrice));
+        } catch (Exception e) {
+            System.out.println("Failed to save . Error : " + e.getMessage());
+        }
+    }
+
+    /////////////////////////////////////////////////////////////////
+//    public void documentReporter() {
+//        List<UserEntity> userEntityList = null;
+//        try {
+//            Service.getInstance().reportDocument();
+//        } catch (Exception e) {
+//            System.out.println("Failed to report . Error : " + e.getMessage());
+//        }
+//        for (UserEntity userEntity : userEntityList) {
+//            System.out.println(userEntity.getName());
+//            System.out.println(userEntity.getPhoneNumber());
+//            System.out.println(userEntity.getAddress());
+//            System.out.println(userEntity.getMeliCode());
+//        }
+//    }
+
+    /////////////////////////////////////////////////////////////////
     public void reporter() {
         List<UserEntity> userEntityList = null;
         try {
@@ -64,7 +89,7 @@ public class Controller {
     }
 
     /////////////////////////////////////////////////////////////////
-    public void productreporter() {
+    public void productReporter() {
         List<ProductEntity> productEntityList = null;
         try {
             Service.getInstance().reportproduct();
@@ -91,7 +116,7 @@ public class Controller {
     }
 
     /////////////////////////////////////////////////////////////////
-    public void paymentreporter() {
+    public void paymentReporter() {
         List<PaymentEntity> paymentEntityList = null;
         try {
             Service.getInstance().reportpayment();
@@ -107,7 +132,7 @@ public class Controller {
     }
 
     /////////////////////////////////////////////////////////////////
-    public void commentreporter() {
+    public void commentReporter() {
         List<CommentEntity> commentEntityList = null;
         try {
             Service.getInstance().reportcomment();
@@ -147,6 +172,15 @@ public class Controller {
             Service.getInstance().removeProducts();
         } catch (Exception e) {
             System.out.println("Failed to delete from products . Error : " + e.getMessage());
+        }
+    }
+
+    /////////////////////////////////////////////////////////////////
+    public void updateProducts(String productName){
+        try {
+            Service.getInstance().editNOProducts(new ProductEntity(),productName);
+        } catch (Exception e) {
+            System.out.println("Failed to update number of products . Error : " + e.getMessage());
         }
     }
 }

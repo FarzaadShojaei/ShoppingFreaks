@@ -52,18 +52,21 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "littlePrinceATC"
 				"text": "Add to Cart"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "littlePrinceATCActionPerformed", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 0 2"
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "warAndPeaceATC"
 				"text": "Add to Cart"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "warAndPeaceATCActionPerformed", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 1 2"
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "metro2034ATC"
 				"text": "Add to Cart"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "metro2034ATCActionPerformed", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 2 2"
 			} )

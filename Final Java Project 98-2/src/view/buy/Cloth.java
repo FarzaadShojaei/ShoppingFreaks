@@ -39,24 +39,44 @@ public class Cloth extends JFrame {
     private void tankPriceAncestorAdded(AncestorEvent e) {
         Controller controller = new Controller();
         tankPrice.setText(controller.priceReporter("TankTop") + " Toman");
+    }
+
+    private void jeansPriceAncestorAdded(AncestorEvent e) {
+        Controller controller = new Controller();
+        jeansPrice.setText(controller.priceReporter("Jeans") + " Toman");
+    }
+
+    private void shirtPriceAncestorAdded(AncestorEvent e) {
+        Controller controller = new Controller();
+        shirtPrice.setText(controller.priceReporter("Shirt") + " Toman");
+    }
+
+    private void tankATCActionPerformed(ActionEvent e) {
+        Controller controller = new Controller();
+        controller.updateProducts("TankTop");
+//        int temp = 1;
+//        Cart cart1 = new Cart();
+//        cart1.setTankNum();
         if (controller.numberReporter("TankTop") == 0){
             tankATC.setEnabled(false);
             tankPrice.setText("Not Available");
         }
     }
 
-    private void jeansPriceAncestorAdded(AncestorEvent e) {
+    private void jeansATCActionPerformed(ActionEvent e) {
         Controller controller = new Controller();
-        jeansPrice.setText(controller.priceReporter("Jeans") + " Toman");
+        controller.updateProducts("Jeans");
+        Cart cart1 = new Cart();
+        cart1.setJeansNum("aa");
         if (controller.numberReporter("Jeans") == 0){
             jeansATC.setEnabled(false);
             jeansPrice.setText("Not Available");
         }
     }
 
-    private void shirtPriceAncestorAdded(AncestorEvent e) {
+    private void shirtATCActionPerformed(ActionEvent e) {
         Controller controller = new Controller();
-        shirtPrice.setText(controller.priceReporter("Shirt") + " Toman");
+        controller.updateProducts("Shirt");
         if (controller.numberReporter("Shirt") == 0){
             shirtATC.setEnabled(false);
             shirtPrice.setText("Not Available");
@@ -150,14 +170,17 @@ public class Cloth extends JFrame {
 
         //---- tankATC ----
         tankATC.setText("Add to Cart");
+        tankATC.addActionListener(e -> tankATCActionPerformed(e));
         contentPane.add(tankATC, "cell 0 2");
 
         //---- jeansATC ----
         jeansATC.setText("Add to Cart");
+        jeansATC.addActionListener(e -> jeansATCActionPerformed(e));
         contentPane.add(jeansATC, "cell 1 2");
 
         //---- shirtATC ----
         shirtATC.setText("Add to Cart");
+        shirtATC.addActionListener(e -> shirtATCActionPerformed(e));
         contentPane.add(shirtATC, "cell 2 2");
 
         //---- menu ----

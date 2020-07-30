@@ -39,24 +39,39 @@ public class Kitchen extends JFrame {
     private void forkPriceAncestorAdded(AncestorEvent e) {
         Controller controller = new Controller();
         forkPrice.setText(controller.priceReporter("Fork") + " Toman");
+    }
+
+    private void ovenPriceAncestorAdded(AncestorEvent e) {
+        Controller controller = new Controller();
+        ovenPrice.setText(controller.priceReporter("Oven") + " Toman");
+    }
+
+    private void platePriceAncestorAdded(AncestorEvent e) {
+        Controller controller = new Controller();
+        platePrice.setText(controller.priceReporter("Plate") + " Toman");
+    }
+
+    private void forkATCActionPerformed(ActionEvent e) {
+        Controller controller = new Controller();
+        controller.updateProducts("Fork");
         if (controller.numberReporter("Fork") == 0){
             forkATC.setEnabled(false);
             forkPrice.setText("Not Available");
         }
     }
 
-    private void ovenPriceAncestorAdded(AncestorEvent e) {
+    private void ovenATCActionPerformed(ActionEvent e) {
         Controller controller = new Controller();
-        ovenPrice.setText(controller.priceReporter("Oven") + " Toman");
+        controller.updateProducts("Oven");
         if (controller.numberReporter("Oven") == 0){
             ovenATC.setEnabled(false);
             ovenPrice.setText("Not Available");
         }
     }
 
-    private void platePriceAncestorAdded(AncestorEvent e) {
+    private void plateATCActionPerformed(ActionEvent e) {
         Controller controller = new Controller();
-        platePrice.setText(controller.priceReporter("Plate") + " Toman");
+        controller.updateProducts("Plate");
         if (controller.numberReporter("Plate") == 0){
             plateATC.setEnabled(false);
             platePrice.setText("Not Available");
@@ -150,14 +165,17 @@ public class Kitchen extends JFrame {
 
         //---- forkATC ----
         forkATC.setText("Add to Cart");
+        forkATC.addActionListener(e -> forkATCActionPerformed(e));
         contentPane.add(forkATC, "cell 0 2");
 
         //---- ovenATC ----
         ovenATC.setText("Add to Cart");
+        ovenATC.addActionListener(e -> ovenATCActionPerformed(e));
         contentPane.add(ovenATC, "cell 1 2");
 
         //---- plateATC ----
         plateATC.setText("Add to Cart");
+        plateATC.addActionListener(e -> plateATCActionPerformed(e));
         contentPane.add(plateATC, "cell 2 2");
 
         //---- menu ----

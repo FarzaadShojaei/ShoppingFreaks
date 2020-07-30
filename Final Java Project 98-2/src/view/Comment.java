@@ -22,6 +22,8 @@ public class Comment extends JFrame {
     private void sendButtonActionPerformed(ActionEvent e) {
         Controller controller = new Controller();
         controller.insertComments(commentTextArea.getText());
+        JOptionPane.showMessageDialog(null,"Your comment was sent. Thanks.");
+        commentTextArea.setText("");
     }
 
     private void menuButtonActionPerformed(ActionEvent e) {

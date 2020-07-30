@@ -39,24 +39,39 @@ public class Tools extends JFrame {
     private void tapePriceAncestorAdded(AncestorEvent e) {
         Controller controller = new Controller();
         tapePrice.setText(controller.priceReporter("Tape") + " Toman");
+    }
+
+    private void axePriceAncestorAdded(AncestorEvent e) {
+        Controller controller = new Controller();
+        axePrice.setText(controller.priceReporter("Axe") + " Toman");
+    }
+
+    private void batPriceAncestorAdded(AncestorEvent e) {
+        Controller controller = new Controller();
+        batPrice.setText(controller.priceReporter("Bat") + " Toman");
+    }
+
+    private void tapeATCActionPerformed(ActionEvent e) {
+        Controller controller = new Controller();
+        controller.updateProducts("Tape");
         if (controller.numberReporter("Tape") == 0){
             tapeATC.setEnabled(false);
             tapePrice.setText("Not Available");
         }
     }
 
-    private void axePriceAncestorAdded(AncestorEvent e) {
+    private void axeATCActionPerformed(ActionEvent e) {
         Controller controller = new Controller();
-        axePrice.setText(controller.priceReporter("Axe") + " Toman");
+        controller.updateProducts("Axe");
         if (controller.numberReporter("Axe") == 0){
             axeATC.setEnabled(false);
             axePrice.setText("Not Available");
         }
     }
 
-    private void batPriceAncestorAdded(AncestorEvent e) {
+    private void batATCActionPerformed(ActionEvent e) {
         Controller controller = new Controller();
-        batPrice.setText(controller.priceReporter("Bat") + " Toman");
+        controller.updateProducts("Bat");
         if (controller.numberReporter("Bat") == 0){
             batATC.setEnabled(false);
             batPrice.setText("Not Available");
@@ -150,14 +165,17 @@ public class Tools extends JFrame {
 
         //---- tapeATC ----
         tapeATC.setText("Add to Cart");
+        tapeATC.addActionListener(e -> tapeATCActionPerformed(e));
         contentPane.add(tapeATC, "cell 0 2");
 
         //---- axeATC ----
         axeATC.setText("Add to Cart");
+        axeATC.addActionListener(e -> axeATCActionPerformed(e));
         contentPane.add(axeATC, "cell 1 2");
 
         //---- batATC ----
         batATC.setText("Add to Cart");
+        batATC.addActionListener(e -> batATCActionPerformed(e));
         contentPane.add(batATC, "cell 2 2");
 
         //---- menu ----

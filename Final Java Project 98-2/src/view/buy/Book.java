@@ -39,24 +39,39 @@ public class Book extends JFrame {
     private void littlePrincePriceAncestorAdded(AncestorEvent e) {
         Controller controller = new Controller();
         littlePrincePrice.setText(controller.priceReporter("Little Prince") + " Toman");
+    }
+
+    private void warAndPeacePriceAncestorAdded(AncestorEvent e) {
+        Controller controller = new Controller();
+        warAndPeacePrice.setText(controller.priceReporter("War And Peace") + " Toman");
+    }
+
+    private void metro2034PriceAncestorAdded(AncestorEvent e) {
+        Controller controller = new Controller();
+        metro2034Price.setText(controller.priceReporter("Metro 2034") + " Toman");
+    }
+
+    private void littlePrinceATCActionPerformed(ActionEvent e) {
+        Controller controller = new Controller();
+        controller.updateProducts("Little Prince");
         if (controller.numberReporter("Little Prince") == 0){
             littlePrinceATC.setEnabled(false);
             littlePrincePrice.setText("Not Available");
         }
     }
 
-    private void warAndPeacePriceAncestorAdded(AncestorEvent e) {
+    private void warAndPeaceATCActionPerformed(ActionEvent e) {
         Controller controller = new Controller();
-        warAndPeacePrice.setText(controller.priceReporter("War And Peace") + " Toman");
+        controller.updateProducts("War And Peace");
         if (controller.numberReporter("War And Peace") == 0){
             warAndPeaceATC.setEnabled(false);
             warAndPeacePrice.setText("Not Available");
         }
     }
 
-    private void metro2034PriceAncestorAdded(AncestorEvent e) {
+    private void metro2034ATCActionPerformed(ActionEvent e) {
         Controller controller = new Controller();
-        metro2034Price.setText(controller.priceReporter("Metro 2034") + " Toman");
+        controller.updateProducts("Metro 2034");
         if (controller.numberReporter("Metro 2034") == 0){
             metro2034ATC.setEnabled(false);
             metro2034Price.setText("Not Available");
@@ -151,14 +166,17 @@ public class Book extends JFrame {
 
         //---- littlePrinceATC ----
         littlePrinceATC.setText("Add to Cart");
+        littlePrinceATC.addActionListener(e -> littlePrinceATCActionPerformed(e));
         contentPane.add(littlePrinceATC, "cell 0 2");
 
         //---- warAndPeaceATC ----
         warAndPeaceATC.setText("Add to Cart");
+        warAndPeaceATC.addActionListener(e -> warAndPeaceATCActionPerformed(e));
         contentPane.add(warAndPeaceATC, "cell 1 2");
 
         //---- metro2034ATC ----
         metro2034ATC.setText("Add to Cart");
+        metro2034ATC.addActionListener(e -> metro2034ATCActionPerformed(e));
         contentPane.add(metro2034ATC, "cell 2 2");
 
         //---- menu ----
