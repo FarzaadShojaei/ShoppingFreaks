@@ -60,9 +60,8 @@ public class Buy extends JFrame {
 
     private void button1ActionPerformed(ActionEvent e) {
         dispose();
-        Cart cart = new Cart();
-        cart.setVisible(true);
-        cart.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        Cart.cart.setVisible(true);
+        Cart.cart.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
     private void initComponents() {
@@ -74,7 +73,7 @@ public class Buy extends JFrame {
         kitchenbutton = new JButton();
         toolsbutton = new JButton();
         menubutton = new JButton();
-        cart = new JButton();
+        cartBTN = new JButton();
 
         //======== this ========
         setTitle("Buy");
@@ -123,10 +122,10 @@ public class Buy extends JFrame {
         menubutton.addActionListener(e -> menubuttonActionPerformed(e));
         contentPane.add(menubutton, "cell 0 5");
 
-        //---- cart ----
-        cart.setText("Cart");
-        cart.addActionListener(e -> button1ActionPerformed(e));
-        contentPane.add(cart, "cell 2 5");
+        //---- cartBTN ----
+        cartBTN.setText("Cart");
+        cartBTN.addActionListener(e -> button1ActionPerformed(e));
+        contentPane.add(cartBTN, "cell 2 5");
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -140,6 +139,6 @@ public class Buy extends JFrame {
     private JButton kitchenbutton;
     private JButton toolsbutton;
     private JButton menubutton;
-    private JButton cart;
+    private JButton cartBTN;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

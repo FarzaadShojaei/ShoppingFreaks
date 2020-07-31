@@ -12,7 +12,7 @@ new FormModel {
 			"title": "Pay"
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
-				"text": "Bank Pass Number : "
+				"text": "Card Number : "
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 1 1"
 			} )

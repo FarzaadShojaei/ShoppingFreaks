@@ -25,12 +25,12 @@ public class Service {
         }
     }
 
-    public void savePayment(PaymentEntity paymentEntity) throws Exception {
-        try (Repository repository = new Repository()) {
-            repository.insertpayments(paymentEntity);
-            repository.commit();
-        }
-    }
+//    public void savePayment(PaymentEntity paymentEntity) throws Exception {
+//        try (Repository repository = new Repository()) {
+//            repository.insertpayments(paymentEntity);
+//            repository.commit();
+//        }
+//    }
 
     public void savecomment(CommentEntity commentEntity) throws Exception {
         try (Repository repository = new Repository()) {
@@ -71,13 +71,13 @@ public class Service {
     }
 
     ///////////////////////////////////////////////////////////////// Reports
-    public List<PaymentEntity> reportpayment() throws Exception {
-        List<PaymentEntity> paymentEntities;
-        try (Repository repository = new Repository()) {
-            paymentEntities = repository.selectpayments();
-        }
-        return paymentEntities;
-    }
+//    public List<PaymentEntity> reportpayment() throws Exception {
+//        List<PaymentEntity> paymentEntities;
+//        try (Repository repository = new Repository()) {
+//            paymentEntities = repository.selectpayments();
+//        }
+//        return paymentEntities;
+//    }
 
     /////////////////////////////////////////////////////////////////
     public List<ProductEntity> reportproduct() throws Exception {

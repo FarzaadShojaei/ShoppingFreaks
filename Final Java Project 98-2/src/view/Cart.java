@@ -19,6 +19,8 @@ public class Cart extends JFrame {
         initComponents();
     }
 
+    public static Cart cart = new Cart();
+
     private void menuActionPerformed(ActionEvent e) {
         dispose();
         Buy buy = new Buy();

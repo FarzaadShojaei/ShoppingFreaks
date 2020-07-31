@@ -19,8 +19,8 @@ public class Receipt extends JFrame {
     }
 
     private void tPriceAncestorAdded(AncestorEvent e) {
-        Cart cart = new Cart();
-        tPrice.setText(cart.totalPrice());
+
+        tPrice.setText(Cart.cart.totalPrice());
     }
 
     private void button1ActionPerformed(ActionEvent e) {

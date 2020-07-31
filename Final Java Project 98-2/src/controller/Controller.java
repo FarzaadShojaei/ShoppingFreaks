@@ -30,13 +30,13 @@ public class Controller {
     }
 
     /////////////////////////////////////////////////////////////////
-    public void insertPayments(PaymentEntity name) {
-        try {
-            Service.getInstance().savePayment(new PaymentEntity().setDate(name.getDate()).setHour(name.getHour()).setCardNumber(name.getCardNumber()).setPrice(name.getPrice()));
-        } catch (Exception e) {
-            System.out.println("Failed to save . Error : " + e.getMessage());
-        }
-    }
+//    public void insertPayments(PaymentEntity name) {
+//        try {
+//            Service.getInstance().savePayment(new PaymentEntity().setDate(name.getDate()).setHour(name.getHour()).setCardNumber(name.getCardNumber()).setPrice(name.getPrice()));
+//        } catch (Exception e) {
+//            System.out.println("Failed to save . Error : " + e.getMessage());
+//        }
+//    }
 
     /////////////////////////////////////////////////////////////////
     public void insertComments(String comment) {
@@ -116,20 +116,20 @@ public class Controller {
     }
 
     /////////////////////////////////////////////////////////////////
-    public void paymentReporter() {
-        List<PaymentEntity> paymentEntityList = null;
-        try {
-            Service.getInstance().reportpayment();
-        } catch (Exception e) {
-            System.out.println("Failed to report . Error : " + e.getMessage());
-        }
-        for (PaymentEntity paymentEntity : paymentEntityList) {
-            System.out.println(paymentEntity.getDate());
-            System.out.println(paymentEntity.getHour());
-            System.out.println(paymentEntity.getCardNumber());
-            System.out.println(paymentEntity.getPrice());
-        }
-    }
+//    public void paymentReporter() {
+//        List<PaymentEntity> paymentEntityList = null;
+//        try {
+//            Service.getInstance().reportpayment();
+//        } catch (Exception e) {
+//            System.out.println("Failed to report . Error : " + e.getMessage());
+//        }
+//        for (PaymentEntity paymentEntity : paymentEntityList) {
+//            System.out.println(paymentEntity.getDate());
+//            System.out.println(paymentEntity.getHour());
+//            System.out.println(paymentEntity.getCardNumber());
+//            System.out.println(paymentEntity.getPrice());
+//        }
+//    }
 
     /////////////////////////////////////////////////////////////////
     public void commentReporter() {

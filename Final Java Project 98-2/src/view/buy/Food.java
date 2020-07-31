@@ -18,6 +18,9 @@ import view.Cart;
  * @author mohammad
  */
 public class Food extends JFrame {
+
+
+
     public Food() {
         initComponents();
     }
@@ -31,9 +34,8 @@ public class Food extends JFrame {
 
     private void cartActionPerformed(ActionEvent e) {
         dispose();
-        Cart cart = new Cart();
-        cart.setVisible(true);
-        cart.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        Cart.cart.setVisible(true);
+        Cart.cart.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
     private void pizzaPriceAncestorAdded(AncestorEvent e) {
@@ -51,27 +53,33 @@ public class Food extends JFrame {
         kebabPrice.setText(controller.priceReporter("Turkish Kebab") + " Toman");
     }
 
+    int tempPizza = 0;
     private void pizzaATCActionPerformed(ActionEvent e) {
         Controller controller = new Controller();
         controller.updateProducts("Pizza");
+        Cart.cart.setPizzaNum(++tempPizza);
         if (controller.numberReporter("Pizza") == 0){
             pizzaATC.setEnabled(false);
             pizzaPrice.setText("Not Available");
         }
     }
 
+    int tempHotDog = 0;
     private void hotDogATCActionPerformed(ActionEvent e) {
         Controller controller = new Controller();
         controller.updateProducts("HotDog");
+        Cart.cart.setHotdogNum(++tempHotDog);
         if (controller.numberReporter("HotDog") == 0){
             hotDogATC.setEnabled(false);
             hotDogPrice.setText("Not Available");
         }
     }
 
+    int tempKebab = 0;
     private void kebabATCActionPerformed(ActionEvent e) {
         Controller controller = new Controller();
         controller.updateProducts("Turkish Kebab");
+        Cart.cart.setKebabNum(++tempKebab);
         if (controller.numberReporter("Turkish Kebab") == 0){
             kebabATC.setEnabled(false);
             kebabPrice.setText("Not Available");
@@ -91,7 +99,7 @@ public class Food extends JFrame {
         hotDogATC = new JButton();
         kebabATC = new JButton();
         menu = new JButton();
-        cart = new JButton();
+        cartBTN = new JButton();
 
         //======== this ========
         setTitle("Food");
@@ -183,10 +191,10 @@ public class Food extends JFrame {
         menu.addActionListener(e -> menuActionPerformed(e));
         contentPane.add(menu, "cell 0 3");
 
-        //---- cart ----
-        cart.setText("Cart");
-        cart.addActionListener(e -> cartActionPerformed(e));
-        contentPane.add(cart, "cell 2 3");
+        //---- cartBTN ----
+        cartBTN.setText("Cart");
+        cartBTN.addActionListener(e -> cartActionPerformed(e));
+        contentPane.add(cartBTN, "cell 2 3");
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -204,6 +212,6 @@ public class Food extends JFrame {
     private JButton hotDogATC;
     private JButton kebabATC;
     private JButton menu;
-    private JButton cart;
+    private JButton cartBTN;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

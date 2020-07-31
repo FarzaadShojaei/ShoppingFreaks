@@ -18,9 +18,11 @@ import view.Cart;
  * @author mohammad
  */
 public class Cloth extends JFrame {
+    
     public Cloth() {
         initComponents();
     }
+
 
     private void menuActionPerformed(ActionEvent e) {
         dispose();
@@ -31,9 +33,8 @@ public class Cloth extends JFrame {
 
     private void cartActionPerformed(ActionEvent e) {
         dispose();
-        Cart cart = new Cart();
-        cart.setVisible(true);
-        cart.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        Cart.cart.setVisible(true);
+        Cart.cart.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
     private void tankPriceAncestorAdded(AncestorEvent e) {
@@ -51,32 +52,33 @@ public class Cloth extends JFrame {
         shirtPrice.setText(controller.priceReporter("Shirt") + " Toman");
     }
 
+    int tempTank = 0;
     private void tankATCActionPerformed(ActionEvent e) {
         Controller controller = new Controller();
         controller.updateProducts("TankTop");
-//        int temp = 1;
-        Cart cart1 = new Cart();
-        cart1.setTankNum(1);
+        Cart.cart.setTankNum(++tempTank);
         if (controller.numberReporter("TankTop") == 0){
             tankATC.setEnabled(false);
             tankPrice.setText("Not Available");
         }
     }
 
+    int tempJeans = 0;
     private void jeansATCActionPerformed(ActionEvent e) {
         Controller controller = new Controller();
         controller.updateProducts("Jeans");
-        Cart cart1 = new Cart();
-        cart1.setJeansNum(1);
+        Cart.cart.setJeansNum(++tempJeans);
         if (controller.numberReporter("Jeans") == 0){
             jeansATC.setEnabled(false);
             jeansPrice.setText("Not Available");
         }
     }
 
+    int tempShirt = 0;
     private void shirtATCActionPerformed(ActionEvent e) {
         Controller controller = new Controller();
         controller.updateProducts("Shirt");
+        Cart.cart.setShirtNum(++tempShirt);
         if (controller.numberReporter("Shirt") == 0){
             shirtATC.setEnabled(false);
             shirtPrice.setText("Not Available");
@@ -96,7 +98,7 @@ public class Cloth extends JFrame {
         jeansATC = new JButton();
         shirtATC = new JButton();
         menu = new JButton();
-        cart = new JButton();
+        cartBtn = new JButton();
 
         //======== this ========
         setTitle("Cloth");
@@ -188,10 +190,10 @@ public class Cloth extends JFrame {
         menu.addActionListener(e -> menuActionPerformed(e));
         contentPane.add(menu, "cell 0 3");
 
-        //---- cart ----
-        cart.setText("Cart");
-        cart.addActionListener(e -> cartActionPerformed(e));
-        contentPane.add(cart, "cell 2 3");
+        //---- cartBtn ----
+        cartBtn.setText("Cart");
+        cartBtn.addActionListener(e -> cartActionPerformed(e));
+        contentPane.add(cartBtn, "cell 2 3");
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -209,6 +211,6 @@ public class Cloth extends JFrame {
     private JButton jeansATC;
     private JButton shirtATC;
     private JButton menu;
-    private JButton cart;
+    private JButton cartBtn;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

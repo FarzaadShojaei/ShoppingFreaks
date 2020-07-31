@@ -20,14 +20,17 @@ public class Pay extends JFrame {
     }
 
     private void payButtonActionPerformed(ActionEvent e) {
-        dispose();
-        Receipt receipt = new Receipt();
-        receipt.setVisible(true);
-        receipt.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        Controller controller = new Controller();
-        Cart cart = new Cart();
-        controller.insertDocuments(numberTextField.getText(),cart.totalPrice());
-        JOptionPane.showMessageDialog(null ,"Thank you for your purchase .");
+        if (numberTextField.getText().equals("") || passwordField1.getPassword().equals("") || passwordField2.getPassword().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please enter valid information ");
+        } else {
+            dispose();
+            Receipt receipt = new Receipt();
+            receipt.setVisible(true);
+            receipt.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            Controller controller = new Controller();
+            controller.insertDocuments(numberTextField.getText(), Cart.cart.totalPrice());
+            JOptionPane.showMessageDialog(null, "Thank you for your purchase .");
+        }
     }
 
     private void initComponents() {
@@ -45,22 +48,22 @@ public class Pay extends JFrame {
         setTitle("Pay");
         Container contentPane = getContentPane();
         contentPane.setLayout(new MigLayout(
-            "hidemode 3",
-            // columns
-            "[fill]" +
-            "[122,fill]" +
-            "[200,fill]" +
-            "[fill]",
-            // rows
-            "[]" +
-            "[40]" +
-            "[40]" +
-            "[40]" +
-            "[40]" +
-            "[]"));
+                "hidemode 3",
+                // columns
+                "[fill]" +
+                        "[122,fill]" +
+                        "[200,fill]" +
+                        "[fill]",
+                // rows
+                "[]" +
+                        "[40]" +
+                        "[40]" +
+                        "[40]" +
+                        "[40]" +
+                        "[]"));
 
         //---- label1 ----
-        label1.setText("Bank Pass Number : ");
+        label1.setText("Card Number : ");
         contentPane.add(label1, "cell 1 1");
         contentPane.add(numberTextField, "cell 2 1");
 

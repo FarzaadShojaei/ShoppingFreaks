@@ -1,26 +1,54 @@
 package model.entity;
 
+
+
 public class PaymentEntity {
-    private String Date;
-    private int hour;
-    private String CardNumber;
-    private String Price;
-    public String getPrice() { return Price; }
-//////////////////////////////////////////////////////////////
-    public String getDate() { return Date; }
+    private String Name, PhoneNumber, MeliCode;
+    private String cardNumber;
+    private String totalPrice;
 
-    public int getHour() { return hour; }
+    public String getName() {
+        return Name;
+    }
 
-    public String getCardNumber() { return CardNumber; }
-//////////////////////////////////////////////////////////////////
-    public PaymentEntity setDate(String date) { Date = date;return this; }
+    public PaymentEntity setName(String name) {
+        Name = name;
+        return this;
+    }
 
-    public PaymentEntity setHour(int hour) { this.hour = hour;return this; }
+    public String getPhoneNumber() {
+        return PhoneNumber;
+    }
 
-    public PaymentEntity setCardNumber(String cardNumber) { CardNumber = cardNumber;return this; }
+    public PaymentEntity setPhoneNumber(String phoneNumber) {
+        PhoneNumber = phoneNumber;
+        return this;
+    }
 
-    public PaymentEntity setPrice(String price) { Price = price;return this; }
+    public String getMeliCode() {
+        return MeliCode;
+    }
 
+    public PaymentEntity setMeliCode(String meliCode) {
+        MeliCode = meliCode;
+        return this;
+    }
 
+    public String getCardNumber() {
+        return cardNumber;
+    }
 
+    public PaymentEntity setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
+        return this;
+    }
+
+    public String getTotalPrice() {
+        return totalPrice;
+    }
+
+    public PaymentEntity setTotalPrice(String totalPrice) {
+        this.totalPrice = totalPrice;
+        return this;
+    }
 }

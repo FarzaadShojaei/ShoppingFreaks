@@ -53,7 +53,7 @@ new FormModel {
 				"value": "cell 0 5"
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "cart"
+				name: "cartBTN"
 				"text": "Cart"
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button1ActionPerformed", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {

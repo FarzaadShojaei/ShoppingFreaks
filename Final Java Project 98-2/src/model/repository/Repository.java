@@ -127,15 +127,15 @@ public class Repository implements AutoCloseable {
 
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////
-    public void insertpayments(PaymentEntity paymentEntity) throws Exception {
-        preparedStatement = connection.prepareStatement("insert into payments(Dates,Hours,CardNumber,Price)values (?,?,?,?)");
-        preparedStatement.setString(1, paymentEntity.getDate());
-        preparedStatement.setInt(2, paymentEntity.getHour());
-        preparedStatement.setString(3, paymentEntity.getCardNumber());
-        preparedStatement.setString(4, paymentEntity.getPrice());
-        preparedStatement.executeUpdate();
-    }
+    //create table payments ( time timestamp , cardnumber varchar2(20) , price varchar2(20) , name varchar2(30) , phonenumber varchar2(30) , melicode varchar2(10));
+//    public void insertpayments(PaymentEntity paymentEntity) throws Exception {
+//        preparedStatement = connection.prepareStatement("insert into payments(time,cardnumber,price,name,phonenumber, melicode)values (?,?,?,?)");
+//        preparedStatement.setString(1, paymentEntity.getDate());
+//        preparedStatement.setInt(2, paymentEntity.getHour());
+//        preparedStatement.setString(3, paymentEntity.getCardNumber());
+//        preparedStatement.setString(4, paymentEntity.getPrice());
+//        preparedStatement.executeUpdate();
+//    }
 
     // create table documents ( time timestamp , cardnumber varchar2(20) , price varchar2(20));
     public void insertDocuments(UserEntity userEntity) throws Exception {
@@ -225,20 +225,20 @@ public class Repository implements AutoCloseable {
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////
-    public List<PaymentEntity> selectpayments() throws Exception {
-        preparedStatement = connection.prepareStatement("select * from payments");
-        ResultSet resultSet = preparedStatement.executeQuery();
-        List<PaymentEntity> paymentEntityList = new ArrayList<>();
-        while (resultSet.next()) {
-            PaymentEntity paymentEntity = new PaymentEntity();
-            paymentEntity.setDate(resultSet.getString("Date"));
-            paymentEntity.setHour(resultSet.getInt("Hour"));
-            paymentEntity.setCardNumber(resultSet.getString("Phonenumber"));
-            paymentEntity.setPrice(resultSet.getString("Price"));
-            paymentEntityList.add(paymentEntity);
-        }
-        return paymentEntityList;
-    }
+//    public List<PaymentEntity> selectpayments() throws Exception {
+//        preparedStatement = connection.prepareStatement("select * from payments");
+//        ResultSet resultSet = preparedStatement.executeQuery();
+//        List<PaymentEntity> paymentEntityList = new ArrayList<>();
+//        while (resultSet.next()) {
+//            PaymentEntity paymentEntity = new PaymentEntity();
+//            paymentEntity.setDate(resultSet.getString("Date"));
+//            paymentEntity.setHour(resultSet.getInt("Hour"));
+//            paymentEntity.setCardNumber(resultSet.getString("Phonenumber"));
+//            paymentEntity.setPrice(resultSet.getString("Price"));
+//            paymentEntityList.add(paymentEntity);
+//        }
+//        return paymentEntityList;
+//    }
 
     ////////////////////////////////////////////////////////////////////////////////////////
     public String selectPrice(String name) throws Exception {

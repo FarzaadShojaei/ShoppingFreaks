@@ -18,7 +18,11 @@ import view.Cart;
  * @author mohammad
  */
 public class Tools extends JFrame {
+
+    Cart cart;
+
     public Tools() {
+        cart = new Cart();
         initComponents();
     }
 
@@ -31,9 +35,8 @@ public class Tools extends JFrame {
 
     private void cartActionPerformed(ActionEvent e) {
         dispose();
-        Cart cart = new Cart();
-        cart.setVisible(true);
-        cart.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        Cart.cart.setVisible(true);
+        Cart.cart.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
     private void tapePriceAncestorAdded(AncestorEvent e) {
@@ -51,27 +54,33 @@ public class Tools extends JFrame {
         batPrice.setText(controller.priceReporter("Bat") + " Toman");
     }
 
+    int tempTape = 0;
     private void tapeATCActionPerformed(ActionEvent e) {
         Controller controller = new Controller();
         controller.updateProducts("Tape");
+        Cart.cart.setTapeNum(++tempTape);
         if (controller.numberReporter("Tape") == 0){
             tapeATC.setEnabled(false);
             tapePrice.setText("Not Available");
         }
     }
 
+    int tempAxe = 0;
     private void axeATCActionPerformed(ActionEvent e) {
         Controller controller = new Controller();
         controller.updateProducts("Axe");
+        Cart.cart.setAxeNum(++tempAxe);
         if (controller.numberReporter("Axe") == 0){
             axeATC.setEnabled(false);
             axePrice.setText("Not Available");
         }
     }
 
+    int tempBat = 0;
     private void batATCActionPerformed(ActionEvent e) {
         Controller controller = new Controller();
         controller.updateProducts("Bat");
+        Cart.cart.setBatNum(++tempBat);
         if (controller.numberReporter("Bat") == 0){
             batATC.setEnabled(false);
             batPrice.setText("Not Available");
@@ -91,7 +100,7 @@ public class Tools extends JFrame {
         axeATC = new JButton();
         batATC = new JButton();
         menu = new JButton();
-        cart = new JButton();
+        cartBTN = new JButton();
 
         //======== this ========
         setTitle("Tools");
@@ -183,10 +192,10 @@ public class Tools extends JFrame {
         menu.addActionListener(e -> menuActionPerformed(e));
         contentPane.add(menu, "cell 0 3");
 
-        //---- cart ----
-        cart.setText("Cart");
-        cart.addActionListener(e -> cartActionPerformed(e));
-        contentPane.add(cart, "cell 2 3");
+        //---- cartBTN ----
+        cartBTN.setText("Cart");
+        cartBTN.addActionListener(e -> cartActionPerformed(e));
+        contentPane.add(cartBTN, "cell 2 3");
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -204,6 +213,6 @@ public class Tools extends JFrame {
     private JButton axeATC;
     private JButton batATC;
     private JButton menu;
-    private JButton cart;
+    private JButton cartBTN;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

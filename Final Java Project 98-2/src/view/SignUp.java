@@ -21,11 +21,15 @@ public class SignUp extends JFrame {
 
     private void button1ActionPerformed(ActionEvent e) {
         Controller controller = new Controller();
-        controller.insertUserInfo(nameTextField.getText(),phoneTextField.getText(),addressTextField.getText(),meliCodeTextField.getText());
-        dispose();
-        Menu menu = new Menu();
-        menu.setVisible(true);
-        menu.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        if (nameTextField.getText().equals("") || phoneTextField.getText().equals("") || addressTextField.getText().equals("") || meliCodeTextField.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please enter valid information .");
+        } else {
+            controller.insertUserInfo(nameTextField.getText(), phoneTextField.getText(), addressTextField.getText(), meliCodeTextField.getText());
+            dispose();
+            Menu menu = new Menu();
+            menu.setVisible(true);
+            menu.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        }
     }
 
     private void phoneTextFieldKeyTyped(KeyEvent e) {
@@ -56,20 +60,20 @@ public class SignUp extends JFrame {
         setTitle("SignUp");
         Container contentPane = getContentPane();
         contentPane.setLayout(new MigLayout(
-            "hidemode 3",
-            // columns
-            "[fill]" +
-            "[99,fill]" +
-            "[150,fill]" +
-            "[84,fill]",
-            // rows
-            "[49]" +
-            "[39]" +
-            "[45]" +
-            "[42]" +
-            "[42]" +
-            "[48]" +
-            "[]"));
+                "hidemode 3",
+                // columns
+                "[fill]" +
+                        "[99,fill]" +
+                        "[150,fill]" +
+                        "[84,fill]",
+                // rows
+                "[49]" +
+                        "[39]" +
+                        "[45]" +
+                        "[42]" +
+                        "[42]" +
+                        "[48]" +
+                        "[]"));
 
         //---- label1 ----
         label1.setText("Welcome!!");

@@ -18,7 +18,11 @@ import view.Cart;
  * @author mohammad
  */
 public class Book extends JFrame {
+
+    Cart cart = new Cart();
+
     public Book() {
+        cart = new Cart();
         initComponents();
     }
 
@@ -31,9 +35,8 @@ public class Book extends JFrame {
 
     private void cartActionPerformed(ActionEvent e) {
         dispose();
-        Cart cart = new Cart();
-        cart.setVisible(true);
-        cart.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        Cart.cart.setVisible(true);
+        Cart.cart.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
     private void littlePrincePriceAncestorAdded(AncestorEvent e) {
@@ -51,27 +54,33 @@ public class Book extends JFrame {
         metro2034Price.setText(controller.priceReporter("Metro 2034") + " Toman");
     }
 
+    int tempLittleP = 0;
     private void littlePrinceATCActionPerformed(ActionEvent e) {
         Controller controller = new Controller();
         controller.updateProducts("Little Prince");
+        Cart.cart.setLittleprinceNum(++tempLittleP);
         if (controller.numberReporter("Little Prince") == 0){
             littlePrinceATC.setEnabled(false);
             littlePrincePrice.setText("Not Available");
         }
     }
 
+    int tempWar = 0;
     private void warAndPeaceATCActionPerformed(ActionEvent e) {
         Controller controller = new Controller();
         controller.updateProducts("War And Peace");
+        Cart.cart.setWarpeaceNum(++tempWar);
         if (controller.numberReporter("War And Peace") == 0){
             warAndPeaceATC.setEnabled(false);
             warAndPeacePrice.setText("Not Available");
         }
     }
 
+    int tempMetro = 0;
     private void metro2034ATCActionPerformed(ActionEvent e) {
         Controller controller = new Controller();
         controller.updateProducts("Metro 2034");
+        Cart.cart.setMetroNum(++tempMetro);
         if (controller.numberReporter("Metro 2034") == 0){
             metro2034ATC.setEnabled(false);
             metro2034Price.setText("Not Available");
@@ -92,7 +101,7 @@ public class Book extends JFrame {
         warAndPeaceATC = new JButton();
         metro2034ATC = new JButton();
         menu = new JButton();
-        cart = new JButton();
+        cartBTN = new JButton();
 
         //======== this ========
         setTitle("Books");
@@ -184,10 +193,10 @@ public class Book extends JFrame {
         menu.addActionListener(e -> menuActionPerformed(e));
         contentPane.add(menu, "cell 0 3");
 
-        //---- cart ----
-        cart.setText("Cart");
-        cart.addActionListener(e -> cartActionPerformed(e));
-        contentPane.add(cart, "cell 2 3");
+        //---- cartBTN ----
+        cartBTN.setText("Cart");
+        cartBTN.addActionListener(e -> cartActionPerformed(e));
+        contentPane.add(cartBTN, "cell 2 3");
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -205,6 +214,6 @@ public class Book extends JFrame {
     private JButton warAndPeaceATC;
     private JButton metro2034ATC;
     private JButton menu;
-    private JButton cart;
+    private JButton cartBTN;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
