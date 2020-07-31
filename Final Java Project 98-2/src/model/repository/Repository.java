@@ -2,6 +2,7 @@ package model.repository;
 
 import controller.Controller;
 import model.entity.*;
+import view.Cart;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -110,7 +111,7 @@ public class Repository implements AutoCloseable {
 
     ////////////////////////////////////////////////////////////////////////////////////////
     public void insertEmployees(EmployeeEntity employeeEntity) throws Exception {
-        preparedStatement = connection.prepareStatement("insert into Employees(Names,fathername,Age,PhoneNumber)values(?,?,?,?)");
+        preparedStatement = connection.prepareStatement("insert into employees(Names,fathername,Age,PhoneNumber)values(?,?,?,?)");
         preparedStatement.setString(1, employeeEntity.getName());
         preparedStatement.setString(2, employeeEntity.getFathername());
         preparedStatement.setInt(3, employeeEntity.getAge());
@@ -128,14 +129,19 @@ public class Repository implements AutoCloseable {
     }
 
     //create table payments ( time timestamp , cardnumber varchar2(20) , price varchar2(20) , name varchar2(30) , phonenumber varchar2(30) , melicode varchar2(10));
-//    public void insertpayments(PaymentEntity paymentEntity) throws Exception {
-//        preparedStatement = connection.prepareStatement("insert into payments(time,cardnumber,price,name,phonenumber, melicode)values (?,?,?,?)");
-//        preparedStatement.setString(1, paymentEntity.getDate());
-//        preparedStatement.setInt(2, paymentEntity.getHour());
-//        preparedStatement.setString(3, paymentEntity.getCardNumber());
-//        preparedStatement.setString(4, paymentEntity.getPrice());
-//        preparedStatement.executeUpdate();
-//    }
+    public void insertPayments(UserEntity userEntity) throws Exception {
+        preparedStatement = connection.prepareStatement("insert into payments(time,cardnumber,price,name,phonenumber,melicode)values (?,?,?,?,?,?)");
+        java.util.Date date = new java.util.Date();
+        long t = date.getTime();
+        java.sql.Timestamp sqlTime = new java.sql.Timestamp(t);
+        preparedStatement.setTimestamp(1, sqlTime);
+        preparedStatement.setString(2, userEntity.getCardNumber());
+        preparedStatement.setString(3, userEntity.getTotalPrice());
+        preparedStatement.setString(4, userEntity.getName());
+        preparedStatement.setString(5, userEntity.getPhoneNumber());
+        preparedStatement.setString(6, userEntity.getMeliCode());
+        preparedStatement.executeUpdate();
+    }
 
     // create table documents ( time timestamp , cardnumber varchar2(20) , price varchar2(20));
     public void insertDocuments(UserEntity userEntity) throws Exception {
@@ -223,22 +229,6 @@ public class Repository implements AutoCloseable {
         }
         return employeeEntityList;
     }
-
-    ////////////////////////////////////////////////////////////////////////////////////////
-//    public List<PaymentEntity> selectpayments() throws Exception {
-//        preparedStatement = connection.prepareStatement("select * from payments");
-//        ResultSet resultSet = preparedStatement.executeQuery();
-//        List<PaymentEntity> paymentEntityList = new ArrayList<>();
-//        while (resultSet.next()) {
-//            PaymentEntity paymentEntity = new PaymentEntity();
-//            paymentEntity.setDate(resultSet.getString("Date"));
-//            paymentEntity.setHour(resultSet.getInt("Hour"));
-//            paymentEntity.setCardNumber(resultSet.getString("Phonenumber"));
-//            paymentEntity.setPrice(resultSet.getString("Price"));
-//            paymentEntityList.add(paymentEntity);
-//        }
-//        return paymentEntityList;
-//    }
 
     ////////////////////////////////////////////////////////////////////////////////////////
     public String selectPrice(String name) throws Exception {

@@ -1,7 +1,6 @@
 package model.service;
 
 import model.entity.CommentEntity;
-import model.entity.PaymentEntity;
 import model.entity.ProductEntity;
 import model.entity.UserEntity;
 import model.repository.Repository;
@@ -18,6 +17,7 @@ public class Service {
         return service;
     }
 
+    ///////////////////////////////////////////////////////////////// SAVES
     public void save(UserEntity userEntity) throws Exception {
         try (Repository repository = new Repository()) {
             repository.insertUserInfo(userEntity);
@@ -25,13 +25,15 @@ public class Service {
         }
     }
 
-//    public void savePayment(PaymentEntity paymentEntity) throws Exception {
-//        try (Repository repository = new Repository()) {
-//            repository.insertpayments(paymentEntity);
-//            repository.commit();
-//        }
-//    }
+    /////////////////////////////////////////////////////////////////
+    public void savePayment(UserEntity userEntity) throws Exception {
+        try (Repository repository = new Repository()) {
+            repository.insertPayments(userEntity);
+            repository.commit();
+        }
+    }
 
+    /////////////////////////////////////////////////////////////////
     public void savecomment(CommentEntity commentEntity) throws Exception {
         try (Repository repository = new Repository()) {
             repository.insertComments(commentEntity);
@@ -39,6 +41,7 @@ public class Service {
         }
     }
 
+    /////////////////////////////////////////////////////////////////
     public void saveDocuments(UserEntity userEntity) throws Exception {
         try (Repository repository = new Repository()) {
             repository.insertDocuments(userEntity);
@@ -46,6 +49,7 @@ public class Service {
         }
     }
 
+    ///////////////////////////////////////////////////////////////// INIT
     public void initialization(ProductEntity productEntity) throws Exception {
         try (Repository repository = new Repository()) {
 
@@ -70,16 +74,7 @@ public class Service {
         }
     }
 
-    ///////////////////////////////////////////////////////////////// Reports
-//    public List<PaymentEntity> reportpayment() throws Exception {
-//        List<PaymentEntity> paymentEntities;
-//        try (Repository repository = new Repository()) {
-//            paymentEntities = repository.selectpayments();
-//        }
-//        return paymentEntities;
-//    }
-
-    /////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////// REPORTS
     public List<ProductEntity> reportproduct() throws Exception {
         List<ProductEntity> productEntities;
         try (Repository repository = new Repository()) {
@@ -135,60 +130,10 @@ public class Service {
     }
 
     ///////////////////////////////////////////////////////////////// Edits
-    public void editNOProducts (ProductEntity productEntity , String productName) throws Exception{
-        try (Repository repository = new Repository()){
-            repository.updateNumberOfProduct(productEntity , productName);
-//            switch (productName) {
-//                case "TankTop":
-//                    productEntity.setNumberOfTankTop(productEntity.getNumberOfTankTop()-1);
-//                    break;
-//                case "Jeans":
-//                    productEntity.setNumberOfJeans(productEntity.getNumberOfJeans()-1);
-//                    break;
-//                case "Shirt":
-//                    productEntity.setNumberOfShirt(productEntity.getNumberOfShirt()-1);
-//                    break;
-//                case "Pizza":
-//                    productEntity.setNumberOfPizza(productEntity.getNumberOfPizza()-1);
-//                    break;
-//                case "HotDog":
-//                    productEntity.setNumberOfHotDog(productEntity.getNumberOfHotDog()-1);
-//                    break;
-//                case "Turkish Kebab":
-//                    productEntity.setNumberOfTurkishKebab(productEntity.getNumberOfTurkishKebab()-1);
-//                    break;
-//                case "Little Prince":
-//                    productEntity.setNumberOfLittlePrince(productEntity.getNumberOfLittlePrince()-1);
-//                    break;
-//                case "War And Peace":
-//                    productEntity.setNumberOfWarAndPeace(productEntity.getNumberOfWarAndPeace()-1);
-//                    break;
-//                case "Metro 2034":
-//                    productEntity.setNumberOfMetro2034(productEntity.getNumberOfMetro2034()-1);
-//                    break;
-//                case "Fork":
-//                    productEntity.setNumberOfFork(productEntity.getNumberOfFork()-1);
-//                    break;
-//                case "Oven":
-//                    productEntity.setNumberOfOven(productEntity.getNumberOfOven()-1);
-//                    break;
-//                case "Plate":
-//                    productEntity.setNumberOfPlate(productEntity.getNumberOfPlate()-1);
-//                    break;
-//                case "Tape":
-//                    productEntity.setNumberOfTape(productEntity.getNumberOfTape()-1);
-//                    break;
-//                case "Axe":
-//                    productEntity.setNumberOfAxe(productEntity.getNumberOfAxe()-1);
-//                    break;
-//                case "Bat":
-//                    productEntity.setNumberOfBat(productEntity.getNumberOfBat()-1);
-//                    break;
-//                default:
-//                    System.out.println("Faild to update");
-//            }
-
-            repository.commit ();
+    public void editNOProducts(ProductEntity productEntity, String productName) throws Exception {
+        try (Repository repository = new Repository()) {
+            repository.updateNumberOfProduct(productEntity, productName);
+            repository.commit();
         }
     }
 }

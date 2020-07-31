@@ -21,9 +21,13 @@ public class Comment extends JFrame {
 
     private void sendButtonActionPerformed(ActionEvent e) {
         Controller controller = new Controller();
-        controller.insertComments(commentTextArea.getText());
-        JOptionPane.showMessageDialog(null,"Your comment was sent. Thanks.");
-        commentTextArea.setText("");
+        try {
+            controller.insertComments(commentTextArea.getText());
+            JOptionPane.showMessageDialog(null, "Your comment was sent. Thanks.");
+            commentTextArea.setText("");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Failed to save . Error : " + ex.getMessage());
+        }
     }
 
     private void menuButtonActionPerformed(ActionEvent e) {
@@ -46,17 +50,17 @@ public class Comment extends JFrame {
         setTitle("Comment");
         Container contentPane = getContentPane();
         contentPane.setLayout(new MigLayout(
-            "hidemode 3",
-            // columns
-            "[141,fill]" +
-            "[241,fill]",
-            // rows
-            "[24]" +
-            "[46]" +
-            "[37]" +
-            "[45]" +
-            "[40]" +
-            "[]"));
+                "hidemode 3",
+                // columns
+                "[141,fill]" +
+                        "[241,fill]",
+                // rows
+                "[24]" +
+                        "[46]" +
+                        "[37]" +
+                        "[45]" +
+                        "[40]" +
+                        "[]"));
 
         //---- label1 ----
         label1.setText("Enter your comment :");

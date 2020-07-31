@@ -24,11 +24,15 @@ public class SignUp extends JFrame {
         if (nameTextField.getText().equals("") || phoneTextField.getText().equals("") || addressTextField.getText().equals("") || meliCodeTextField.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please enter valid information .");
         } else {
-            controller.insertUserInfo(nameTextField.getText(), phoneTextField.getText(), addressTextField.getText(), meliCodeTextField.getText());
-            dispose();
-            Menu menu = new Menu();
-            menu.setVisible(true);
-            menu.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            try {
+                controller.insertUserInfo(nameTextField.getText(), phoneTextField.getText(), addressTextField.getText(), meliCodeTextField.getText());
+                dispose();
+                Menu menu = new Menu();
+                menu.setVisible(true);
+                menu.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null , "Failed to save . Error : " + ex.getMessage());
+            }
         }
     }
 

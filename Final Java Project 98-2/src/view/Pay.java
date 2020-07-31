@@ -28,8 +28,13 @@ public class Pay extends JFrame {
             receipt.setVisible(true);
             receipt.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             Controller controller = new Controller();
-            controller.insertDocuments(numberTextField.getText(), Cart.cart.totalPrice());
-            JOptionPane.showMessageDialog(null, "Thank you for your purchase .");
+            try {
+                controller.insertDocuments(numberTextField.getText(), Cart.cart.totalPrice());
+                controller.insertPayments(numberTextField.getText(), Cart.cart.totalPrice());
+                JOptionPane.showMessageDialog(null, "Thank you for your purchase .");
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Failed to save . Error : " + ex.getMessage());
+            }
         }
     }
 

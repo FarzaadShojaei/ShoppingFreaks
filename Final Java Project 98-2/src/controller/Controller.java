@@ -8,11 +8,16 @@ import model.entity.ProductEntity;
 import model.entity.UserEntity;
 import model.repository.Repository;
 import model.service.Service;
+import view.Cart;
+
+import javax.jws.soap.SOAPBinding;
 
 
 public class Controller {
     Scanner input = new Scanner(System.in);
-    public void initNumberOfProducts (){
+
+    /////////////////////////////////////////////////////////////////
+    public void initNumberOfProducts() {
         try {
             Service.getInstance().initialization(new ProductEntity());
         } catch (Exception e) {
@@ -20,128 +25,25 @@ public class Controller {
         }
     }
 
-    public void insertUserInfo(String name, String phoneNumber, String address, String meliCode) {
-        try {
-            Service.getInstance().save(new UserEntity().setName(name).setPhoneNumber(phoneNumber)
-                    .setAddress(address).setMeliCode(meliCode));
-        } catch (Exception e) {
-            System.out.println("Failed to save . Error : " + e.getMessage());
-        }
+    /////////////////////////////////////////////////////////////////
+    public void insertUserInfo(String name, String phoneNumber, String address, String meliCode) throws Exception {
+        Service.getInstance().save(UserEntity.userEntity.setName(name).setPhoneNumber(phoneNumber)
+                .setAddress(address).setMeliCode(meliCode));
     }
 
     /////////////////////////////////////////////////////////////////
-//    public void insertPayments(PaymentEntity name) {
-//        try {
-//            Service.getInstance().savePayment(new PaymentEntity().setDate(name.getDate()).setHour(name.getHour()).setCardNumber(name.getCardNumber()).setPrice(name.getPrice()));
-//        } catch (Exception e) {
-//            System.out.println("Failed to save . Error : " + e.getMessage());
-//        }
-//    }
-
-    /////////////////////////////////////////////////////////////////
-    public void insertComments(String comment) {
-        try {
-            Service.getInstance().savecomment(new CommentEntity().setComment(comment));
-        } catch (Exception e) {
-            System.out.println("Failed to save . Error : " + e.getMessage());
-        }
+    public void insertPayments(String cardNumber, String totalPrice) throws Exception {
+        Service.getInstance().savePayment(UserEntity.userEntity.setCardNumber(cardNumber).setTotalPrice(totalPrice));
     }
 
     /////////////////////////////////////////////////////////////////
-    public void insertDocuments(String cardNumber, String totalPrice) {
-        try {
-            Service.getInstance().saveDocuments(new UserEntity().setCardNumber(cardNumber).setTotalPrice(totalPrice));
-        } catch (Exception e) {
-            System.out.println("Failed to save . Error : " + e.getMessage());
-        }
+    public void insertComments(String comment) throws Exception {
+        Service.getInstance().savecomment(new CommentEntity().setComment(comment));
     }
 
     /////////////////////////////////////////////////////////////////
-//    public void documentReporter() {
-//        List<UserEntity> userEntityList = null;
-//        try {
-//            Service.getInstance().reportDocument();
-//        } catch (Exception e) {
-//            System.out.println("Failed to report . Error : " + e.getMessage());
-//        }
-//        for (UserEntity userEntity : userEntityList) {
-//            System.out.println(userEntity.getName());
-//            System.out.println(userEntity.getPhoneNumber());
-//            System.out.println(userEntity.getAddress());
-//            System.out.println(userEntity.getMeliCode());
-//        }
-//    }
-
-    /////////////////////////////////////////////////////////////////
-    public void reporter() {
-        List<UserEntity> userEntityList = null;
-        try {
-            Service.getInstance().report();
-        } catch (Exception e) {
-            System.out.println("Failed to report . Error : " + e.getMessage());
-        }
-        for (UserEntity userEntity : userEntityList) {
-            System.out.println(userEntity.getName());
-            System.out.println(userEntity.getPhoneNumber());
-            System.out.println(userEntity.getAddress());
-            System.out.println(userEntity.getMeliCode());
-        }
-    }
-
-    /////////////////////////////////////////////////////////////////
-    public void productReporter() {
-        List<ProductEntity> productEntityList = null;
-        try {
-            Service.getInstance().reportproduct();
-        } catch (Exception e) {
-            System.out.println("Failed to report . Error : " + e.getMessage());
-        }
-        for (ProductEntity productEntity : productEntityList) {
-            System.out.println(productEntity.getNumberOfTankTop());
-            System.out.println(productEntity.getNumberOfJeans());
-            System.out.println(productEntity.getNumberOfShirt());
-            System.out.println(productEntity.getNumberOfPizza());
-            System.out.println(productEntity.getNumberOfHotDog());
-            System.out.println(productEntity.getNumberOfTurkishKebab());
-            System.out.println(productEntity.getNumberOfLittlePrince());
-            System.out.println(productEntity.getNumberOfWarAndPeace());
-            System.out.println(productEntity.getNumberOfMetro2034());
-            System.out.println(productEntity.getNumberOfFork());
-            System.out.println(productEntity.getNumberOfOven());
-            System.out.println(productEntity.getNumberOfPlate());
-            System.out.println(productEntity.getNumberOfTape());
-            System.out.println(productEntity.getNumberOfAxe());
-            System.out.println(productEntity.getNumberOfBat());
-        }
-    }
-
-    /////////////////////////////////////////////////////////////////
-//    public void paymentReporter() {
-//        List<PaymentEntity> paymentEntityList = null;
-//        try {
-//            Service.getInstance().reportpayment();
-//        } catch (Exception e) {
-//            System.out.println("Failed to report . Error : " + e.getMessage());
-//        }
-//        for (PaymentEntity paymentEntity : paymentEntityList) {
-//            System.out.println(paymentEntity.getDate());
-//            System.out.println(paymentEntity.getHour());
-//            System.out.println(paymentEntity.getCardNumber());
-//            System.out.println(paymentEntity.getPrice());
-//        }
-//    }
-
-    /////////////////////////////////////////////////////////////////
-    public void commentReporter() {
-        List<CommentEntity> commentEntityList = null;
-        try {
-            Service.getInstance().reportcomment();
-        } catch (Exception e) {
-            System.out.println("Failed to report . Error : " + e.getMessage());
-        }
-        for (CommentEntity commentEntity : commentEntityList) {
-            System.out.println(commentEntity.getComment());
-        }
+    public void insertDocuments(String cardNumber, String totalPrice) throws Exception {
+            Service.getInstance().saveDocuments(UserEntity.userEntity.setCardNumber(cardNumber).setTotalPrice(totalPrice));
     }
 
     /////////////////////////////////////////////////////////////////
@@ -167,7 +69,7 @@ public class Controller {
     }
 
     /////////////////////////////////////////////////////////////////
-    public void removeProducts(){
+    public void removeProducts() {
         try {
             Service.getInstance().removeProducts();
         } catch (Exception e) {
@@ -176,9 +78,9 @@ public class Controller {
     }
 
     /////////////////////////////////////////////////////////////////
-    public void updateProducts(String productName){
+    public void updateProducts(String productName) {
         try {
-            Service.getInstance().editNOProducts(new ProductEntity(),productName);
+            Service.getInstance().editNOProducts(new ProductEntity(), productName);
         } catch (Exception e) {
             System.out.println("Failed to update number of products . Error : " + e.getMessage());
         }

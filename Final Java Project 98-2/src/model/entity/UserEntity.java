@@ -3,10 +3,15 @@ package model.entity;
 import java.util.Date;
 
 public class UserEntity {
-    private String Name, PhoneNumber, Address, MeliCode;//Baraye vared shodan user
+    private String Name ;//Baraye vared shodan user
     private String cardNumber;
+    private String PhoneNumber;
+    private String Address;
+    private String MeliCode;
     private String totalPrice;
     private Date date;
+
+    public static UserEntity userEntity = new UserEntity();
 
 
     /////////////////////////////////////////////////// getters
