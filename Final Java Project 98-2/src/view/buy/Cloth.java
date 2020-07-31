@@ -55,8 +55,8 @@ public class Cloth extends JFrame {
         Controller controller = new Controller();
         controller.updateProducts("TankTop");
 //        int temp = 1;
-//        Cart cart1 = new Cart();
-//        cart1.setTankNum();
+        Cart cart1 = new Cart();
+        cart1.setTankNum(1);
         if (controller.numberReporter("TankTop") == 0){
             tankATC.setEnabled(false);
             tankPrice.setText("Not Available");
@@ -67,7 +67,7 @@ public class Cloth extends JFrame {
         Controller controller = new Controller();
         controller.updateProducts("Jeans");
         Cart cart1 = new Cart();
-        cart1.setJeansNum("aa");
+        cart1.setJeansNum(1);
         if (controller.numberReporter("Jeans") == 0){
             jeansATC.setEnabled(false);
             jeansPrice.setText("Not Available");

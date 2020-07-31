@@ -199,6 +199,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "totalPrice"
 				"text": "0"
+				addEvent( new FormEvent( "javax.swing.event.AncestorListener", "ancestorAdded", "totalPriceAncestorAdded", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 2 8,alignx center,growx 0"
 			} )

@@ -7,6 +7,7 @@ package view;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.event.*;
 
 import net.miginfocom.swing.*;
 
@@ -26,11 +27,11 @@ public class Cart extends JFrame {
     }
 
     public void setTankNum(int num) {
-        tapeNum.setText(String.valueOf(num));
+        tankNum.setText(String.valueOf(num));
     }
 
-    public void setJeansNum(String num) {
-        jeansNum.setText(num);
+    public void setJeansNum(int num) {
+        jeansNum.setText(String.valueOf(num));
     }
 
     public void setShirtNum(int num) {
@@ -74,15 +75,25 @@ public class Cart extends JFrame {
     }
 
     public void setTapeNum(int num) {
-        pizzaNum.setText(String.valueOf(num));
+        tapeNum.setText(String.valueOf(num));
     }
 
     public void setAxeNum(int num) {
-        pizzaNum.setText(String.valueOf(num));
+        axeNum.setText(String.valueOf(num));
     }
 
     public void setBatNum(int num) {
-        pizzaNum.setText(String.valueOf(num));
+        batNum.setText(String.valueOf(num));
+    }
+
+    public String totalPrice(){
+        long temp = Long.parseLong(tankNum.getText())*1000 + Long.parseLong(jeansNum.getText())*2000 + Long.parseLong(shirtNum.getText())*4000
+                + Long.parseLong(pizzaNum.getText())*5000 + Long.parseLong(hotdogNum.getText())*6000 + Long.parseLong(kebabNum.getText())*6000
+                + Long.parseLong(littleprinceNum.getText())*5230 + Long.parseLong(warpeaceNum.getText())*6075 + Long.parseLong(metroNum.getText())*2432
+                + Long.parseLong(forkNum.getText())*5000 + Long.parseLong(ovenNum.getText())*7000 + Long.parseLong(plateNum.getText())*6000
+                + Long.parseLong(tapeNum.getText())*5000 + Long.parseLong(axeNum.getText())*1000 + Long.parseLong(batNum.getText())*7000 ;
+        String tPrice = String.valueOf(temp);
+        return tPrice;
     }
 
     private void payActionPerformed(ActionEvent e) {
@@ -90,6 +101,10 @@ public class Cart extends JFrame {
         Pay pay1 = new Pay();
         pay1.setVisible(true);
         pay1.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+
+    private void totalPriceAncestorAdded(AncestorEvent e) {
+        totalPrice.setText(totalPrice());
     }
 
     private void initComponents() {
@@ -278,6 +293,16 @@ public class Cart extends JFrame {
 
         //---- totalPrice ----
         totalPrice.setText("0");
+        totalPrice.addAncestorListener(new AncestorListener() {
+            @Override
+            public void ancestorAdded(AncestorEvent e) {
+                totalPriceAncestorAdded(e);
+            }
+            @Override
+            public void ancestorMoved(AncestorEvent e) {}
+            @Override
+            public void ancestorRemoved(AncestorEvent e) {}
+        });
         contentPane.add(totalPrice, "cell 2 8,alignx center,growx 0");
 
         //---- menu ----

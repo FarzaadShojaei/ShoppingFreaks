@@ -7,6 +7,8 @@ package view;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+import controller.Controller;
 import net.miginfocom.swing.*;
 
 /**
@@ -22,15 +24,18 @@ public class Pay extends JFrame {
         Receipt receipt = new Receipt();
         receipt.setVisible(true);
         receipt.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
+        Controller controller = new Controller();
+        Cart cart = new Cart();
+        controller.insertDocuments(numberTextField.getText(),cart.totalPrice());
+        JOptionPane.showMessageDialog(null ,"Thank you for your purchase .");
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - mohammad
-        label2 = new JLabel();
-        textField3 = new JTextField();
         label1 = new JLabel();
+        numberTextField = new JTextField();
+        label2 = new JLabel();
         passwordField1 = new JPasswordField();
         label3 = new JLabel();
         passwordField2 = new JPasswordField();
@@ -54,14 +59,14 @@ public class Pay extends JFrame {
             "[40]" +
             "[]"));
 
-        //---- label2 ----
-        label2.setText("Bank Pass Number : ");
-        contentPane.add(label2, "cell 1 1");
-        contentPane.add(textField3, "cell 2 1");
-
         //---- label1 ----
-        label1.setText("Bank Passcode :");
-        contentPane.add(label1, "cell 1 2");
+        label1.setText("Bank Pass Number : ");
+        contentPane.add(label1, "cell 1 1");
+        contentPane.add(numberTextField, "cell 2 1");
+
+        //---- label2 ----
+        label2.setText("Bank Passcode :");
+        contentPane.add(label2, "cell 1 2");
         contentPane.add(passwordField1, "cell 2 2");
 
         //---- label3 ----
@@ -80,9 +85,9 @@ public class Pay extends JFrame {
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - mohammad
-    private JLabel label2;
-    private JTextField textField3;
     private JLabel label1;
+    private JTextField numberTextField;
+    private JLabel label2;
     private JPasswordField passwordField1;
     private JLabel label3;
     private JPasswordField passwordField2;
